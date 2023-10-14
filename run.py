@@ -52,10 +52,10 @@ def validate_menu(value):
     raises ValueError of string cannot be converted into int, or if the input is wrong
     """
     try:
-        [int(value)]
+        # [int(value)]
         if value > 3:
             raise ValueError(
-                f"Invalid Imput: {value} is greater than 3, please try again.\n"
+                f"Invalid Input: {value} is greater than 3, please try again.\n"
             )
     except ValueError as e:
         print(f"Invalid input: {e}, Please try again.\n")
@@ -74,6 +74,19 @@ def create_students():
     Student creation
     """
     print("Welcome to Student Creation") 
+    studentName = input("Enter your New Student Name: ")
+    # validate_student_name(studentName)
+    worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
+    print(f"Creating {studentName}...")
+    worksheet_to_update = SHEET.worksheet(studentName)
+    headers = ["education", "health"]
+    worksheet_to_update.append_row(headers)
+    print(f"{studentName} has been created successfully as a student in the database!\n")
+
+# def new_student_header(data):
+#     worksheet_to_update = SHEET.worksheet(data)
+#     worksheet_to_update.append_row("education")
+#     worksheet.update('A1', "education", 'B1', "health")
     
 def view_instructions():
     """
