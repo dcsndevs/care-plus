@@ -27,19 +27,43 @@ def start_selection():
         print(" Press 3 - To view instructions\n")
         
         # main_input = input(int(("Enter: \n"))) 
-        main_input = input("Enter your selection: \n")
+        menu_input = input("Enter your selection: \n")
+        menu_inputed = int(menu_input)
+        validate_menu(menu_inputed)
         
-        if main_input == 1:
+        if menu_inputed == 1:
             view_students()
-        elif main_input == 2:
+            break
+        elif menu_input == 2:
             create_students()
-        elif main_input == 3:
+            break
+        elif menu_input == 3:
             view_instructions()
+            break
         else:
             print("Invalid Selection")
             start_selection()
+            
+    return menu_inputed
+            
+def validate_menu(value):
+    """
+    Checks for int value of inputed data from start menu input,
+    raises ValueError of string cannot be converted into int, or if the input is wrong
+    """
+    try:
+        [int(value)]
+        if value > 3:
+            raise ValueError(
+                f"Invalid Imput: {value} is greater than 3, please try again.\n"
+            )
+    except ValueError as e:
+        print(f"Invalid input: {e}, Please try again.\n")
+        
+    return True
     
-   
+def view_students():
+    print("Welcome to Student Selection*****")   
 
 def main():
     """
@@ -49,6 +73,7 @@ def main():
     print("Welcome to Care Plus App\n")
     print("--------------------------")
     start_selection()
+    
     
 
 
