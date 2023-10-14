@@ -67,7 +67,16 @@ def view_students():
     """
     View existing students in the database
     """
-    print("Welcome to Student Selection*****")   
+    print("Welcome to Student Portal")
+    
+    all_students = SHEET.worksheet("student_list").col_values(1)
+    for student in all_students:
+        print(student)
+    select_student = input("Enter your New Student Name: \n")
+    print(f"Welcome to {select_student} info")
+    health_indicator = input("Enter Health Score (1-10): \n")
+    education_indicator = input("Enter Education Score (1-10): \n")
+           
     
 def create_students():
     """
@@ -82,7 +91,12 @@ def create_students():
     worksheet_to_update = SHEET.worksheet(studentName)
     headers = ["education", "health"]
     worksheet_to_update.append_row(headers)
+    worksheet_to_update2 = SHEET.worksheet("student_list")
+    studentName_list = [studentName]
+    worksheet_to_update2.append_row(studentName_list)
+    
     print(f"{studentName} has been created successfully as a student in the database!\n")
+    main()
 
 def validate_student_name(studentName):
     print("Validating inputed name...")
