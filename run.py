@@ -12,11 +12,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('care-plus')
 
-# test = SHEET.worksheet('wellness')
-
-# data = test.get_all_values()
-# print(data)
-
 def start_selection():
     """
     Select from menu options
@@ -83,23 +78,47 @@ def create_students():
     Student creation
     """
     print("Welcome to Student Creation") 
-    studentName = input("Enter your New Student Name: ")
-    validate_student_name(studentName)
-    studentName = studentName.upper()
-    worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
-    print(f"Creating {studentName}...")
-    worksheet_to_update = SHEET.worksheet(studentName)
-    headers = ["education", "health"]
-    worksheet_to_update.append_row(headers)
-    worksheet_to_update2 = SHEET.worksheet("student_list")
-    studentName_list = [studentName]
-    worksheet_to_update2.append_row(studentName_list)
+    while True:
+        studentName = input("Enter your New Student Name: ")
+        if validate_student_name(studentName):
+            studentName = studentName.upper()
+            worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
+            print(f"Creating {studentName}...")
+            worksheet_to_update = SHEET.worksheet(studentName)
+            headers = ["education", "health"]
+            worksheet_to_update.append_row(headers)
+            worksheet_to_update2 = SHEET.worksheet("student_list")
+            studentName_list = [studentName]
+            worksheet_to_update2.append_row(studentName_list)
     
-    print(f"{studentName} has been created successfully as a student in the database!\n")
-    main()
+            print(f"{studentName} has been created successfully as a student in the database!\n")
+            main()
+        else:
+            print("Invalid input: Enter only a combination of leters and dot(.)")
+            
+    
 
-def validate_student_name(studentName):
+def validate_student_name(student_name_input):
+    import re
     print("Validating inputed name...")
+
+    allowed_characters = ['.', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    
+    pattern = r'^[a-zA-Z]{2,}'
+    while True:
+        print()
+        # student_name_input = input('Enter New Student Name\nYou can use dot "." to seperate firstname and surname: ')
+        for char in student_name_input:
+            if char not in allowed_characters:
+                print("Invalid Characters detected...Try again\nOnly a combination of letters and '.' can be entered\n")
+                return False
+        if re.match(pattern, student_name_input):
+            return True
+        else:
+            print("Your student name combination is not allowed.\nEnter a combination of at least 2 letters and no more than 1 dot.\nYou also cannot start your input with two dot(..)")
+            return False
+    
+    print(f'You have entered {student_name_input}')
     
 
 def view_instructions():
@@ -122,5 +141,5 @@ def main():
 
 
 main()
-    
+   
     
