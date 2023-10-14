@@ -75,7 +75,8 @@ def create_students():
     """
     print("Welcome to Student Creation") 
     studentName = input("Enter your New Student Name: ")
-    # validate_student_name(studentName)
+    validate_student_name(studentName)
+    studentName = studentName.upper()
     worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
     print(f"Creating {studentName}...")
     worksheet_to_update = SHEET.worksheet(studentName)
@@ -83,11 +84,10 @@ def create_students():
     worksheet_to_update.append_row(headers)
     print(f"{studentName} has been created successfully as a student in the database!\n")
 
-# def new_student_header(data):
-#     worksheet_to_update = SHEET.worksheet(data)
-#     worksheet_to_update.append_row("education")
-#     worksheet.update('A1', "education", 'B1', "health")
+def validate_student_name(studentName):
+    print("Validating inputed name...")
     
+
 def view_instructions():
     """
     App Instructions3
