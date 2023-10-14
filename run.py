@@ -27,22 +27,22 @@ def start_selection():
         print(" Press 3 - To view instructions\n")
         
         # main_input = input(int(("Enter: \n"))) 
-        menu_input = input("Enter your selection: \n")
+        menu_input = input("Enter your selection: ")
         menu_inputed = int(menu_input)
         validate_menu(menu_inputed)
         
         if menu_inputed == 1:
             view_students()
             break
-        elif menu_input == 2:
+        elif menu_inputed == 2:
             create_students()
             break
-        elif menu_input == 3:
+        elif menu_inputed == 3:
             view_instructions()
             break
         else:
             print("Invalid Selection")
-            start_selection()
+            # start_selection()
             
     return menu_inputed
             
@@ -59,11 +59,29 @@ def validate_menu(value):
             )
     except ValueError as e:
         print(f"Invalid input: {e}, Please try again.\n")
+        return False
         
     return True
     
 def view_students():
+    """
+    View existing students in the database
+    """
     print("Welcome to Student Selection*****")   
+    
+def create_students():
+    """
+    Student creation
+    """
+    print("Welcome to Student Creation") 
+    
+def view_instructions():
+    """
+    App Instructions3
+    """
+    print("This is instruction for how to use this application")
+    
+
 
 def main():
     """
@@ -74,8 +92,6 @@ def main():
     print("--------------------------")
     start_selection()
     
-    
-
 
 
 main()
