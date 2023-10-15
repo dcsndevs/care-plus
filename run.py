@@ -18,46 +18,51 @@ def start_selection():
     """
     while True:
         print(" Press 1 - To select existing students")
-        print(" Press 2 - To create new students")
+        print(" Press 2 - To manage students")
         print(" Press 3 - To view instructions\n")
         
         # main_input = input(int(("Enter: \n"))) 
         menu_input = input("Enter your selection: ")
-        menu_inputed = int(menu_input)
-        validate_menu(menu_inputed)
         
-        if menu_inputed == 1:
-            view_students()
-            break
-        elif menu_inputed == 2:
-            create_students()
-            break
-        elif menu_inputed == 3:
-            view_instructions()
-            break
-        else:
-            print("Invalid Selection")
-            # start_selection()
+        validate_menu(menu_input)
+        print("after_validate")
+        
             
-    return menu_inputed
+    
             
-def validate_menu(value):
+def validate_menu(menu_input):
     """
     Checks for int value of inputed data from start menu input,
     raises ValueError of string cannot be converted into int, or if the input is wrong
     """
     try:
-        # [int(value)]
-        if value > 3:
-            raise ValueError(
-                f"Invalid Input: {value} is greater than 3, please try again.\n"
+        value = int(menu_input)
+
+        if value not in [1, 2, 3]:
+            print(f"{value} is not an option, please try again.\n"
             )
     except ValueError as e:
-        print(f"Invalid input: {e}, Please try again.\n")
+        print(f"The key entered in an invalid character. Enter only 1, 2, or 3.\n")
         return False
         
-    return True
-    
+    return start_selection_stage_2(value)
+
+def start_selection_stage_2(value):
+    """
+    Receives the validate input for processing
+    """
+    menu_inputed = value
+    print("checking")
+    if menu_inputed == 1:
+        view_students()
+    elif menu_inputed == 2:
+        create_students()
+    elif menu_inputed == 3:
+        view_instructions()
+    else:
+        print("Invalid Selection")
+        # start_selection()
+
 def view_students():
     """
     View existing students in the database
@@ -67,7 +72,7 @@ def view_students():
     all_students = SHEET.worksheet("student_list").col_values(1)
     for student in all_students:
         print(student)
-    select_student = input("Enter your New Student Name: \n")
+    select_student = input("Enter your Existing Student Name: \n")
     print(f"Welcome to {select_student} info")
     health_indicator = input("Enter Health Score (1-10): \n")
     education_indicator = input("Enter Education Score (1-10): \n")
@@ -99,6 +104,9 @@ def create_students():
     
 
 def validate_student_name(student_name_input):
+    """
+    Student creation string validation
+    """
     import re
     print("Validating inputed name...")
 
