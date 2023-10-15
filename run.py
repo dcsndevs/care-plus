@@ -78,21 +78,92 @@ def view_students():
         
     select_student = input("Enter your Existing Student Name: \n")
     validate_student_record(all_students, select_student)
-    print(f"Welcome to {select_student.upper()} Care Progress")
-    health_indicator = input("Enter Health Score (1-10): \n")
-    education_indicator = input("Enter Education Score (1-10): \n")
+    
     
 def validate_student_record(all_students, select_student):
-    print(select_student)
-    print()
-    print(all_students)
+    """
+    Validate student selection
+    """
     if select_student.upper() in all_students:
         print("Bingo!")
-        return select_student
+        return student_progress_entry(select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
         return view_students()
            
+def student_progress_entry(select_student):
+    """
+    For inputing student's progress on health and educaation
+    """
+    print(f"Welcome to {select_student.upper()} Care Progress")
+    student = select_student.upper()
+    health_score(student)
+    
+    
+def health_score(student):
+    """
+    Inpur Student Health Indicator
+    """
+    while True:
+        print(f"Ready to input Health Progress Value for {student}")
+        health_indicator = input("Enter Health Score (0-10): ")
+        indicator = health_indicator
+        validate_student_progress_input(student, indicator)
+        
+    
+        
+    
+
+def education_score(student, validated_health_indicator):
+    """
+    Input Student Health Indicator
+    """
+    print(f"Note: You entered '{validated_health_indicator}' for Health Indicator")
+          
+    while True:
+        print(f"Ready to input Education Progress Value for {student}")
+        education_indicator = input("Enter Health Score (0-10): ")
+        validate_student_progress_education_input(student, validated_health_indicator, education_indicator)
+    
+def validate_student_progress_education_input(student, validated_health_indicator, education_indicator):
+    """
+    Student validator input for Education
+    """
+    try:
+        validated_education_indicator = int(education_indicator)
+
+        if validated_education_indicator not in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+            print(f"{validated_education_indicator} is not an option, please try again.\n"
+            )
+    except ValueError as e:
+        print(f"The key entered in an invalid character. Enter only numbers 0 to 10.\n")
+        return False
+        
+    return insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator)
+    
+def validate_student_progress_input(student, indicator):
+    """
+    Student progress input validator
+    """    
+    try:
+        indicator_value = int(indicator)
+
+        if indicator_value not in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+            print(f"{indicator_value} is not an option, please try again.\n"
+            )
+    except ValueError as e:
+        print(f"The key entered in an invalid character. Enter only numbers 0 to 10.\n")
+        return False
+        
+    return insert_health_column(student, indicator_value)
+
+def insert_health_column(student, indicator_value):
+    print("Hello WorlD")
+    validated_health_indicator = indicator_value
+    education_score(student, validated_health_indicator)
+    
+def insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator):
+    print("Hurray`!")
     
 def create_students():
     """
