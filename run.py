@@ -164,6 +164,16 @@ def insert_health_column(student, indicator_value):
     
 def insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator):
     print("Hurray`!")
+    print()
+    print(student)
+    print(validated_health_indicator)
+    print(validated_education_indicator)
+    data = [validated_health_indicator, validated_education_indicator]
+    worksheet_to_update = SHEET.worksheet(student)
+    worksheet_to_update.append_row(data)
+    print(f"Indicators for {student} have been successfully uploaded!")
+    
+    quit()
     
 def create_students():
     """
@@ -215,6 +225,8 @@ def validate_student_name(student_name_input):
     
     print(f'You have entered {student_name_input}')
     
+    
+
 
 def view_instructions():
     """
