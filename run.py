@@ -77,13 +77,21 @@ def view_students():
         n += 1
         
     select_student = input("Enter your Existing Student Name: \n")
-    
-    print(f"Welcome to {select_student} info")
+    validate_student_record(all_students, select_student)
+    print(f"Welcome to {select_student.upper()} Care Progress")
     health_indicator = input("Enter Health Score (1-10): \n")
     education_indicator = input("Enter Education Score (1-10): \n")
     
-# def validate_student_record():
-    
+def validate_student_record(all_students, select_student):
+    print(select_student)
+    print()
+    print(all_students)
+    if select_student.upper() in all_students:
+        print("Bingo!")
+        return select_student
+    else:
+        print("Invalid Entry! Ensure your entry exists in the database.")
+        return view_students()
            
     
 def create_students():
