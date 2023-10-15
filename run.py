@@ -69,13 +69,21 @@ def view_students():
     """
     print("Welcome to Student Portal")
     
-    all_students = SHEET.worksheet("student_list").col_values(1)
+    all_students = SHEET.worksheet("student_list").col_values(1)[1:]
+    n = 1
     for student in all_students:
-        print(student)
+        
+        print(f"{n}. {student}")
+        n += 1
+        
     select_student = input("Enter your Existing Student Name: \n")
+    
     print(f"Welcome to {select_student} info")
     health_indicator = input("Enter Health Score (1-10): \n")
     education_indicator = input("Enter Education Score (1-10): \n")
+    
+# def validate_student_record():
+    
            
     
 def create_students():
