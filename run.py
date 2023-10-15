@@ -172,8 +172,7 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
     worksheet_to_update = SHEET.worksheet(student)
     worksheet_to_update.append_row(data)
     print(f"Indicators for {student} have been successfully uploaded!")
-    
-    quit()
+    restart()
     
 def create_students():
     """
@@ -226,8 +225,21 @@ def validate_student_name(student_name_input):
     print(f'You have entered {student_name_input}')
     
     
-
-
+def restart():
+    """
+    Restart or exit the Application
+    """
+    while True:
+        user_input = input(f"Press enter to restart the program or type 'exit' to Terminate: ")
+        if user_input.lower() == '':
+            print("Restarting the application...\n")
+            main()
+        elif user_input.lower() == 'exit':
+            print("Exiting...")
+            exit()
+        else:
+            print("Invalid seclection\n")
+            
 def view_instructions():
     """
     App Instructions3
