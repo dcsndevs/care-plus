@@ -25,7 +25,6 @@ def start_selection():
         menu_input = input("Enter your selection: ")
         
         validate_menu(menu_input)
-        print("after_validate")
         
             
     
@@ -84,7 +83,6 @@ def validate_student_record(all_students, select_student):
     Validate student selection
     """
     if select_student.upper() in all_students:
-        print("Bingo!")
         print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()} overall progress")
         sub_view_menu = input("Options 1 or 2: ")
         validate_sub_view_menu(sub_view_menu, select_student)
@@ -206,7 +204,26 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
     restart()
 
 def view_student_summary(select_student):
-    print("Bazuka!")
+    print()
+    select_student = select_student.upper()
+    
+    health_list = SHEET.worksheet(select_student).col_values(1)[1:]
+    health_list = [int(char) for char in health_list]
+    education_list = SHEET.worksheet(select_student).col_values(2)[1:]
+    education_list = [int(char) for char in education_list]
+    health_average =  sum(health_list) / len(health_list)
+    education_average =  sum(education_list) / len(education_list)
+
+    print(f"The Health average for {select_student} is {health_average}\n")
+    print(f"The Education average for {select_student} is {education_average}\n")
+    print()
+    print("............................................................")
+    restart()
+    # chart(health_list)
+    
+def chart(health_list):
+    for ind in health_list:
+        print()
 
 def create_students():
     """
@@ -291,8 +308,4 @@ def main():
     print("==========================")
     start_selection()
     
-
-
 main()
-   
-    
