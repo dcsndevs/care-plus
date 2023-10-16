@@ -217,23 +217,14 @@ def view_student_summary(select_student):
     print()
     print(f"The Health average for {select_student} is {health_average}\n")
     
-    if __name__ == "__main__":
-        # Example data
-        data = health_list
-
-        # Create and display the bar chart
-        create_bar_chart(data)
+    data = health_list
+    create_bar_chart(data)
     
     print()
     print(f"The Education average for {select_student} is {education_average}\n")
     
-    
-    if __name__ == "__main__":
-        # Example data
-        data = education_list
-
-        # Create and display the bar chart
-        create_bar_chart(data)
+    data = education_list
+    create_bar_chart(data)
 
     print("............................................................")
     restart()
@@ -307,9 +298,7 @@ def validate_student_name(student_name_input):
         else:
             print("Your student name combination is not allowed.\nEnter a combination of at least 2 letters and no more than 1 dot.\nYou also cannot start your input with two dot(..)")
             return False
-    
-    print(f'You have entered {student_name_input}')
-    
+        
     
 def restart():
     """
