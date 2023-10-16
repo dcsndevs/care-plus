@@ -18,7 +18,7 @@ def start_selection():
     """
     while True:
         print(" Press 1 - To select existing students")
-        print(" Press 2 - To manage students")
+        print(" Press 2 - To create a new student")
         print(" Press 3 - To view instructions\n")
         
         # main_input = input(int(("Enter: \n"))) 
@@ -61,7 +61,6 @@ def start_selection_stage_2(value):
         view_instructions()
     else:
         print("Invalid Selection")
-        # start_selection()
 
 def view_students():
     """
@@ -86,10 +85,42 @@ def validate_student_record(all_students, select_student):
     """
     if select_student.upper() in all_students:
         print("Bingo!")
-        return student_progress_entry(select_student)
+        print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()} overall progress")
+        sub_view_menu = input("Options 1 or 2: ")
+        validate_sub_view_menu(sub_view_menu, select_student)
+        # return student_progress_entry(select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
         return view_students()
+
+def validate_sub_view_menu(sub_view_menu, select_student):
+    """
+    Validate Sub view Menu
+    """
+    try:
+        value = int(sub_view_menu)
+
+        if value not in [1, 2]:
+            print(f"{value} is not an option, please try again.\n"
+            )
+    except ValueError as e:
+        print(f"The key entered in an invalid character. Enter only 1, 2, or 3.\n")
+        return False
+        
+    return sub_view_menu_stage_2(value, select_student)
+
+def sub_view_menu_stage_2(value, select_student):
+    """
+    Receives the validated input for processing
+    """
+    menu_inputed = value
+    if menu_inputed == 1:
+        student_progress_entry(select_student)
+    elif menu_inputed == 2:
+        view_student_summary(select_student)
+    else:
+        print("Invalid Selection")
+    
            
 def student_progress_entry(select_student):
     """
@@ -173,7 +204,10 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
     worksheet_to_update.append_row(data)
     print(f"Indicators for {student} have been successfully uploaded!")
     restart()
-    
+
+def view_student_summary(select_student):
+    print("Bazuka!")
+
 def create_students():
     """
     Student creation
@@ -253,8 +287,8 @@ def main():
     Run all program functions
     """
     print("==========================")
-    print("Welcome to Care Plus App\n")
-    print("--------------------------")
+    print("Welcome to Care Plus App")
+    print("==========================")
     start_selection()
     
 
