@@ -21,7 +21,7 @@ def start_selection():
         print(" Press 2 - To create a new student")
         print(" Press 3 - To view instructions\n")
         
-        menu_input = input("Enter your selection: \n")
+        menu_input = input("Enter your selection: ")
         
         validate_menu(menu_input)
         
@@ -73,7 +73,7 @@ def view_students():
         print(f"{n}. {student}")
         n += 1
         
-    select_student = input("Enter your Existing Student Name: \n")
+    select_student = input("Enter your Existing Student Name: ")
     validate_student_record(all_students, select_student)
     
     
@@ -83,7 +83,7 @@ def validate_student_record(all_students, select_student):
     """
     if select_student.upper() in all_students:
         print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()} overall progress")
-        sub_view_menu = input("Options 1 or 2: \n")
+        sub_view_menu = input("Options 1 or 2: ")
         validate_sub_view_menu(sub_view_menu, select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
@@ -133,7 +133,7 @@ def health_score(student):
     """
     while True:
         print(f"Ready to input Health Progress Value for {student}")
-        health_indicator = input("Enter Health Score (0-10): \n")
+        health_indicator = input("Enter Health Score (0-10): ")
         indicator = health_indicator
         validate_student_progress_input(student, indicator)
         
@@ -149,7 +149,7 @@ def education_score(student, validated_health_indicator):
           
     while True:
         print(f"Ready to input Education Progress Value for {student}")
-        education_indicator = input("Enter Health Score (0-10): \n")
+        education_indicator = input("Enter Health Score (0-10): ")
         validate_student_progress_education_input(student, validated_health_indicator, education_indicator)
     
 def validate_student_progress_education_input(student, validated_health_indicator, education_indicator):
@@ -255,7 +255,7 @@ def create_students():
     """
     print("Welcome to Student Creation") 
     while True:
-        studentName = input("Enter your New Student Name: \n")
+        studentName = input("Enter your New Student Name: ")
         if validate_student_name(studentName):
             studentName = studentName.upper()
             worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
