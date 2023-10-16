@@ -214,16 +214,51 @@ def view_student_summary(select_student):
     health_average =  sum(health_list) / len(health_list)
     education_average =  sum(education_list) / len(education_list)
 
-    print(f"The Health average for {select_student} is {health_average}\n")
-    print(f"The Education average for {select_student} is {education_average}\n")
     print()
+    print(f"The Health average for {select_student} is {health_average}\n")
+    
+    if __name__ == "__main__":
+        # Example data
+        data = health_list
+
+        # Create and display the bar chart
+        create_bar_chart(data)
+    
+    print()
+    print(f"The Education average for {select_student} is {education_average}\n")
+    
+    
+    if __name__ == "__main__":
+        # Example data
+        data = education_list
+
+        # Create and display the bar chart
+        create_bar_chart(data)
+
     print("............................................................")
     restart()
-    # chart(health_list)
-    
-def chart(health_list):
-    for ind in health_list:
-        print()
+
+#ChatGPT assisted in creating this function    
+def create_bar_chart(data):
+    """
+    Pictorial record display
+    """
+    max_value = max(data)
+
+    for i in range(max_value, 0, -1):
+        row = ""
+        for value in data:
+            if value >= i:
+                row += "██"
+            else:
+                row += "  "
+        print(row)
+
+    # Print x-axis
+    print("-" * (2 * len(data)))
+
+
+
 
 def create_students():
     """
