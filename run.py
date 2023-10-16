@@ -21,8 +21,7 @@ def start_selection():
         print(" Press 2 - To create a new student")
         print(" Press 3 - To view instructions\n")
         
-        # main_input = input(int(("Enter: \n"))) 
-        menu_input = input("Enter your selection: ")
+        menu_input = input("Enter your selection: \n")
         
         validate_menu(menu_input)
         
@@ -84,9 +83,8 @@ def validate_student_record(all_students, select_student):
     """
     if select_student.upper() in all_students:
         print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()} overall progress")
-        sub_view_menu = input("Options 1 or 2: ")
+        sub_view_menu = input("Options 1 or 2: \n")
         validate_sub_view_menu(sub_view_menu, select_student)
-        # return student_progress_entry(select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
         return view_students()
@@ -135,7 +133,7 @@ def health_score(student):
     """
     while True:
         print(f"Ready to input Health Progress Value for {student}")
-        health_indicator = input("Enter Health Score (0-10): ")
+        health_indicator = input("Enter Health Score (0-10): \n")
         indicator = health_indicator
         validate_student_progress_input(student, indicator)
         
@@ -151,7 +149,7 @@ def education_score(student, validated_health_indicator):
           
     while True:
         print(f"Ready to input Education Progress Value for {student}")
-        education_indicator = input("Enter Health Score (0-10): ")
+        education_indicator = input("Enter Health Score (0-10): \n")
         validate_student_progress_education_input(student, validated_health_indicator, education_indicator)
     
 def validate_student_progress_education_input(student, validated_health_indicator, education_indicator):
@@ -257,7 +255,7 @@ def create_students():
     """
     print("Welcome to Student Creation") 
     while True:
-        studentName = input("Enter your New Student Name: ")
+        studentName = input("Enter your New Student Name: \n")
         if validate_student_name(studentName):
             studentName = studentName.upper()
             worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
@@ -288,7 +286,6 @@ def validate_student_name(student_name_input):
     pattern = r'^[a-zA-Z]{2,}'
     while True:
         print()
-        # student_name_input = input('Enter New Student Name\nYou can use dot "." to seperate firstname and surname: ')
         for char in student_name_input:
             if char not in allowed_characters:
                 print("Invalid Characters detected...Try again\nOnly a combination of letters and '.' can be entered\n")
