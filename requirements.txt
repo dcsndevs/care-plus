@@ -2,7 +2,6 @@ altgraph @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveB
 cachetools==5.3.1
 google-auth==2.23.3
 google-auth-oauthlib==1.1.0
-gsheetplot==1.3
 gspread==5.11.3
 oauthlib==3.2.2
 pyasn1==0.5.0
