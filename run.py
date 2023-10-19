@@ -26,10 +26,7 @@ def start_selection():
             custom_exit()
         print()
         validate_menu(menu_input)
-        
-            
-    
-            
+                    
 def validate_menu(menu_input):
     """
     Checks for int value of inputed data from start menu input,
@@ -44,7 +41,6 @@ def validate_menu(menu_input):
     except ValueError as e:
         print(f"The key entered in an invalid character. Enter only 1, 2, or 3.\n")
         return False
-        
     return start_selection_stage_2(value)
 
 def start_selection_stage_2(value):
@@ -80,7 +76,6 @@ def view_students():
     print()
     validate_student_record(all_students, select_student)
     
-    
 def validate_student_record(all_students, select_student):
     """
     Validate student selection
@@ -102,14 +97,12 @@ def validate_sub_view_menu(sub_view_menu, select_student):
     """
     try:
         value = int(sub_view_menu)
-
         if value not in [1, 2]:
             print(f"{value} is not an option, please try again.\n"
             )
     except ValueError as e:
         print(f"The key entered in an invalid character. Enter only 1, 2, or 3.\n")
         return False
-        
     return sub_view_menu_stage_2(value, select_student)
 
 def sub_view_menu_stage_2(value, select_student):
@@ -132,7 +125,6 @@ def sub_view_menu_stage_2(value, select_student):
     else:
         print("Invalid Selection")
     
-           
 def student_progress_entry(select_student):
     """
     For inputing student's progress on health and educaation
@@ -141,7 +133,6 @@ def student_progress_entry(select_student):
     print(f"Welcome to {select_student.upper()}'s Care Progress\n")
     student = select_student.upper()
     health_score(student)
-    
     
 def health_score(student):
     """
@@ -156,7 +147,6 @@ def health_score(student):
         print()
         indicator = health_indicator
         validate_student_progress_input(student, indicator)
-        
 
 def education_score(student, validated_health_indicator):
     """
@@ -254,7 +244,7 @@ def view_student_summary(select_student):
     data = education_list
     create_bar_chart(data)
 
-    print("............................................................")
+    print("." * 35)
     restart()
 
 #ChatGPT assisted in creating this function    
@@ -275,9 +265,6 @@ def create_bar_chart(data):
 
     # Print x-axis
     print("-" * (2 * len(data)))
-
-
-
 
 def create_students():
     """
@@ -303,8 +290,6 @@ def create_students():
             main()
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
-            
-    
 
 def validate_student_name(student_name_input):
     """
@@ -327,7 +312,6 @@ def validate_student_name(student_name_input):
         else:
             print("Your student name combination is not allowed.\nEnter a combination of at least 2 letters and no more than 1 dot.\nYou also cannot start your input with two dot(..)")
             return False
-        
     
 def restart():
     """
@@ -354,6 +338,8 @@ def view_instructions():
     print(welcome)
     print("=" * len(welcome))
     instructions = """
+Hint: - Typing 'Exit' in any given input field, would exit the program.
+
 1. **Select Options:**
     - Press `1` to view existing students.
     - Press `2` to create a new student.
@@ -384,7 +370,6 @@ def view_instructions():
    - Type 'exit' to terminate the application.
 
 8. **Note:**
-   - Typing Exit in any given input field, would exit the program.
    - Ensure that you enter valid inputs as guided by the application.
    - Follow on-screen prompts for a seamless experience.
 
@@ -409,11 +394,13 @@ def return_to_main_menu():
     start_selection()
     
 def custom_exit():
+    """
+    Special exit for leaving the program from all input fields
+    """
     print("Exiting application.........\n")
     print("Goodbye.\n")
     print()
     quit() 
-
 
 def main():
     """
