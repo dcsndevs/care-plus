@@ -17,9 +17,9 @@ def start_selection():
     Select from menu options
     """
     while True:
-        print(" Press 1 - To select existing students")
-        print(" Press 2 - To create a new student")
-        print(" Press 3 - To view instructions\n")
+        print("Press 1 - To select existing students")
+        print("Press 2 - To create a new student")
+        print("Press 3 - To view instructions\n")
         
         menu_input = input("Enter your selection: \n")
         print()
@@ -114,7 +114,15 @@ def sub_view_menu_stage_2(value, select_student):
     if menu_inputed == 1:
         student_progress_entry(select_student)
     elif menu_inputed == 2:
-        view_student_summary(select_student)
+        select_student = select_student.upper()
+        health_list = SHEET.worksheet(select_student).col_values(1)[1:]
+        education_list = SHEET.worksheet(select_student).col_values(2)[1:]
+        print()
+        if len(health_list) or len(education_list) == 0:
+            print("This student has no records yet!\n")
+            return student_progress_entry(select_student)
+        else:
+         view_student_summary(select_student)
     else:
         print("Invalid Selection")
     
@@ -373,11 +381,11 @@ Enjoy using Care Plus App to manage student data and track their progress!
     """
     print(instructions)
     
-    user_input = input("Enter 'm' to return to the main menu: ")
+    user_input = input("Enter 'm' or any key to return to the main menu: ")
     if user_input.lower() == 'm':
         return_to_main_menu()
     else:
-        print("Invalid input. Returning to the main menu...\n")
+        print("Returning to the main menu...\n")
         return_to_main_menu()
         
 def return_to_main_menu():
