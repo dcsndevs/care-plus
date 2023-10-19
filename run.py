@@ -82,12 +82,19 @@ def validate_student_record(all_students, select_student):
     """
     if select_student.upper() in all_students:
         print(f"Welcome to {select_student.upper()}'s management portal\n\nHere you can do any of the following:")
-        print(f"Enter 1 to input a new record for {select_student.upper()}\nEnter 2 to view {select_student.upper()}'s overall progress\nEnter 3 to Delete {select_student.upper()}'s name and record from the app\n")
+        print(f"""
+            Enter 1 to Input a new record for {select_student.upper()}
+            Enter 2 to View {select_student.upper()}'s overall progress
+            Enter 3 to Rename {select_student.upper()}
+            Enter 4 to Delete {select_student.upper()}'s name and record from the app\n
+            """)
         print()
-        sub_view_menu = input("Choose option 1, 2 or 3: \n")
+        sub_view_menu = input("Choose option 1, 2, 3 or 4: \n")
         if sub_view_menu.lower() == 'exit':
             custom_exit()
         if int(sub_view_menu) == 3:
+            rename_student(select_student)
+        if int(sub_view_menu) == 4:
             delete_student(select_student)
         validate_sub_view_menu(sub_view_menu, select_student)
     else:
@@ -294,6 +301,40 @@ def create_students():
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
             
+def rename_student(select_student):
+    """
+    Change Student name
+    """
+    select_student = select_student.upper()
+    print(f"Your have chosen to Rename {select_student} in the app.\n")
+    while True:
+        new_student_name = input("Enter a New Student Name: \n")
+        if new_student_name.lower() == 'exit':
+            custom_exit()
+        if validate_student_name(new_student_name):
+            new_student_name = new_student_name.upper()
+            print(f"Renaming {select_student}...")
+            #Rename Student in the Sheet
+            worksheet_to_update = SHEET.worksheet(str(select_student))
+            print(f"Updating {select_student} to {new_student_name}...")
+            # worksheet_to_update.title = str(new_student_name)
+            worksheet_to_update.update_title(new_student_name)
+            
+            #Rename Student in the list
+            worksheet_to_update2 = SHEET.worksheet("student_list")
+            value_to_find = str(select_student)
+            cell = worksheet_to_update2.find(value_to_find)
+            row_number = cell.row
+            column_number = cell.col
+            rename_student_name(new_student_name, row_number, column_number)
+    
+            print(f"{new_student_name} has been successfully renamed in the database!\n")
+            main()
+        else:
+            print("Invalid input: Enter only a combination of leters and dot(.)")
+    
+    
+            
 def delete_student(select_student):
     """
     Delete student name and record from app
@@ -313,17 +354,14 @@ def delete_student(select_student):
             SHEET.del_worksheet(worksheet_to_delete)
             
             worksheet_to_update2 = SHEET.worksheet("student_list")
-
             value_to_find = str(select_student)
-            
             cell = worksheet_to_update2.find(value_to_find)
             row_number = cell.row
             column_number = cell.col
 
             delete_student_name(row_number, column_number)
             
-            
-            print("Student record deleted...\n")
+            print("Student Record deleted...\n")
             print("Student profile deletion is complete.\nApplication would now restart")
             restart()
         else:
@@ -331,11 +369,16 @@ def delete_student(select_student):
             custom_exit()
     else:
         print("Invalid input...Program would now exit")
-        custom_exit()        
+        custom_exit()
+
+def rename_student_name(studentName, row, col):
+    worksheet = SHEET.worksheet("student_list")
+    worksheet.update_cell(row, col, str(studentName))
+    print("Student Name Changed....\n")
 
 def delete_student_name(row, col):
     worksheet = SHEET.worksheet("student_list")
-    worksheet.update_cell(row, col, "")
+    worksheet.delete_row(row)
     print("Student Name Deleted....\n")
 
 def validate_student_name(student_name_input):
