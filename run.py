@@ -22,7 +22,7 @@ def start_selection():
         print(" Press 3 - To view instructions\n")
         
         menu_input = input("Enter your selection: \n")
-        
+        print()
         validate_menu(menu_input)
         
             
@@ -50,7 +50,6 @@ def start_selection_stage_2(value):
     Receives the validate input for processing
     """
     menu_inputed = value
-    print("checking")
     if menu_inputed == 1:
         view_students()
     elif menu_inputed == 2:
@@ -72,8 +71,9 @@ def view_students():
         
         print(f"{n}. {student}")
         n += 1
-        
+    print()    
     select_student = input("Enter your Existing Student Name: \n")
+    print()
     validate_student_record(all_students, select_student)
     
     
@@ -82,8 +82,9 @@ def validate_student_record(all_students, select_student):
     Validate student selection
     """
     if select_student.upper() in all_students:
-        print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()} overall progress")
-        sub_view_menu = input("Options 1 or 2: \n")
+        print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()}'s overall progress")
+        print()
+        sub_view_menu = input("Choose option 1 or 2: \n")
         validate_sub_view_menu(sub_view_menu, select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
@@ -122,7 +123,8 @@ def student_progress_entry(select_student):
     """
     For inputing student's progress on health and educaation
     """
-    print(f"Welcome to {select_student.upper()} Care Progress")
+    print()
+    print(f"Welcome to {select_student.upper()}'s Care Progress\n")
     student = select_student.upper()
     health_score(student)
     
@@ -132,24 +134,25 @@ def health_score(student):
     Inpur Student Health Indicator
     """
     while True:
-        print(f"Ready to input Health Progress Value for {student}")
+        print(f"Enter Health Progress Value for {student}")
+        print()
         health_indicator = input("Enter Health Score (0-10): \n")
+        print()
         indicator = health_indicator
         validate_student_progress_input(student, indicator)
         
-    
-        
-    
 
 def education_score(student, validated_health_indicator):
     """
     Input Student Health Indicator
     """
-    print(f"Note: You entered '{validated_health_indicator}' for Health Indicator")
+    print(f"Note: You entered '{validated_health_indicator}' for Health Indicator\n")
           
     while True:
-        print(f"Ready to input Education Progress Value for {student}")
-        education_indicator = input("Enter Health Score (0-10): \n")
+        print(f"Enter Education Progress Value for {student}")
+        print()
+        education_indicator = input("Enter Education Score (0-10): \n")
+        print()
         validate_student_progress_education_input(student, validated_health_indicator, education_indicator)
     
 def validate_student_progress_education_input(student, validated_health_indicator, education_indicator):
@@ -185,20 +188,20 @@ def validate_student_progress_input(student, indicator):
     return insert_health_column(student, indicator_value)
 
 def insert_health_column(student, indicator_value):
-    print("Hello WorlD")
+    print()
     validated_health_indicator = indicator_value
     education_score(student, validated_health_indicator)
     
 def insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator):
-    print("Hurray`!")
     print()
-    print(student)
-    print(validated_health_indicator)
-    print(validated_education_indicator)
+    print(f"Entries for {student}:")
+    print("Health Indicator = " + str(validated_health_indicator))
+    print("Education Indicator = " + str(validated_education_indicator))
     data = [validated_health_indicator, validated_education_indicator]
     worksheet_to_update = SHEET.worksheet(student)
     worksheet_to_update.append_row(data)
-    print(f"Indicators for {student} have been successfully uploaded!")
+    print(f"Indicators for {student} have been successfully uploaded!/n")
+    print()
     restart()
 
 def view_student_summary(select_student):
@@ -213,13 +216,13 @@ def view_student_summary(select_student):
     education_average =  sum(education_list) / len(education_list)
 
     print()
-    print(f"The Health average for {select_student} is {health_average}\n")
+    print(f"The Health average for {select_student} is {round(health_average, 1)}\n")
     
     data = health_list
     create_bar_chart(data)
     
     print()
-    print(f"The Education average for {select_student} is {education_average}\n")
+    print(f"The Education average for {select_student} is {round(education_average, 1)}\n")
     
     data = education_list
     create_bar_chart(data)
@@ -307,7 +310,9 @@ def restart():
             print("Restarting the application...\n")
             main()
         elif user_input.lower() == 'exit':
-            print("Exiting...")
+            print("Exiting........./n")
+            print("Goodbye!/n")
+            print()
             exit()
         else:
             print("Invalid seclection\n")
