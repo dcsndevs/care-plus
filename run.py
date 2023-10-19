@@ -81,11 +81,14 @@ def validate_student_record(all_students, select_student):
     Validate student selection
     """
     if select_student.upper() in all_students:
-        print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()}'s overall progress")
+        print(f"Welcome to {select_student.upper()}'s management portal\n\nHere you can do any of the following:")
+        print(f"Enter 1 to input a new record for {select_student.upper()}\nEnter 2 to view {select_student.upper()}'s overall progress\nEnter 3 to Delete {select_student.upper()}'s name and record from the app\n")
         print()
-        sub_view_menu = input("Choose option 1 or 2: \n")
+        sub_view_menu = input("Choose option 1, 2 or 3: \n")
         if sub_view_menu.lower() == 'exit':
             custom_exit()
+        if int(sub_view_menu) == 3:
+            delete_student(select_student)
         validate_sub_view_menu(sub_view_menu, select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
@@ -290,6 +293,50 @@ def create_students():
             main()
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
+            
+def delete_student(select_student):
+    """
+    Delete student name and record from app
+    """
+    print(f"Your have chosen to delete {select_student}'s name and record from the app!\n")
+    user_input = input("Are you sure?\nY- Yes or N- No: \n")
+    if user_input.lower() == "n" or user_input.lower() == "no":
+        custom_exit()
+    elif user_input.lower() == "y" or user_input.lower() == "yes":
+        print()
+        print("This can not be  undone!\n\n")
+        confirmation_input = input(f"Type {select_student.upper()} to delete: \n")
+        if confirmation_input.upper() == select_student.upper():
+            select_student = select_student.upper()
+            print(f"Deleting {select_student.upper()} from the application...\n\n")
+            worksheet_to_delete = SHEET.worksheet(select_student)
+            SHEET.del_worksheet(worksheet_to_delete)
+            
+            worksheet_to_update2 = SHEET.worksheet("student_list")
+
+            value_to_find = str(select_student)
+            
+            cell = worksheet_to_update2.find(value_to_find)
+            row_number = cell.row
+            column_number = cell.col
+
+            delete_student_name(row_number, column_number)
+            
+            
+            print("Student record deleted...\n")
+            print("Student profile deletion is complete.\nApplication would now restart")
+            restart()
+        else:
+            print("Invalid input...Program would now exit\n\n")
+            custom_exit()
+    else:
+        print("Invalid input...Program would now exit")
+        custom_exit()        
+
+def delete_student_name(row, col):
+    worksheet = SHEET.worksheet("student_list")
+    worksheet.update_cell(row, col, "")
+    print("Student Name Deleted....\n")
 
 def validate_student_name(student_name_input):
     """
@@ -397,6 +444,7 @@ def custom_exit():
     """
     Special exit for leaving the program from all input fields
     """
+    print()
     print("Exiting application.........\n")
     print("Goodbye.\n")
     print()
