@@ -163,7 +163,7 @@ def validate_student_progress_education_input(student, validated_health_indicato
         validated_education_indicator = int(education_indicator)
 
         if validated_education_indicator not in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
-            print(f"{validated_education_indicator} is not an option, please try again.\n"
+            print(f"{validated_education_indicator} is not an option, please try again. Enter only numbers 0 to 10\n"
             )
     except ValueError as e:
         print(f"The key entered in an invalid character. Enter only numbers 0 to 10.\n")
@@ -188,11 +188,17 @@ def validate_student_progress_input(student, indicator):
     return insert_health_column(student, indicator_value)
 
 def insert_health_column(student, indicator_value):
+    """
+    Collect and hold validated Health indicator value
+    """
     print()
     validated_health_indicator = indicator_value
     education_score(student, validated_health_indicator)
     
 def insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator):
+    """
+    Health and Education column entries - done simultaneously
+    """
     print()
     print(f"Entries for {student}:")
     print("Health Indicator = " + str(validated_health_indicator))
@@ -205,6 +211,9 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
     restart()
 
 def view_student_summary(select_student):
+    """
+    Hold and Display student summary of Health and Education values
+    """
     print()
     select_student = select_student.upper()
     
