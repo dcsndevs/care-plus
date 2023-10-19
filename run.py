@@ -83,11 +83,11 @@ def validate_student_record(all_students, select_student):
     if select_student.upper() in all_students:
         print(f"Welcome to {select_student.upper()}'s management portal\n\nHere you can do any of the following:")
         print(f"""
-            Enter 1 to Input a new record for {select_student.upper()}
-            Enter 2 to View {select_student.upper()}'s overall progress
-            Enter 3 to Rename {select_student.upper()}
-            Enter 4 to Delete {select_student.upper()}'s name and record from the app\n
-            """)
+    Enter 1 to Input a new record for {select_student.upper()}
+    Enter 2 to View {select_student.upper()}'s overall progress
+    Enter 3 to Rename {select_student.upper()}
+    Enter 4 to Delete {select_student.upper()}'s name and record from the app\n
+    """)
         print()
         sub_view_menu = input("Choose option 1, 2, 3 or 4: \n")
         if sub_view_menu.lower() == 'exit':
@@ -438,6 +438,7 @@ Hint: - Typing 'Exit' in any given input field, would exit the program.
 2. **View Existing Students:**
    - After selecting option `1`, you will see a list of existing students.
    - Enter the name of the student you want to view.
+   - You would yet have an option to Input, View, Rename and to Delete Student records
 
 3. **Create a New Student:**
    - After selecting option `2`, enter the name of the new student.
