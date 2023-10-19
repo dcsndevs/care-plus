@@ -395,9 +395,20 @@ def main():
     """
     Run all program functions
     """
-    print("==========================")
-    print("Welcome to Care Plus App")
-    print("==========================")
+    
+    logo = """
+     CCCCCC   AAAAA   RRRRRR   EEEEEE       ++
+    CC       AA   AA  RR  RR   EE           ++
+    CC       AAAAAAA  RRRR     EEEEEE    ++++++++
+    CC       AA   AA  RR   RR  EE           ++
+     CCCCCC  AA   AA  RR   RR  EEEEEE       ++
+          """
+    print(logo)
+    print()
+    welcome = "Welcome to Care Plus App"
+    print("=" * len(welcome))
+    print(welcome)
+    print("=" * len(welcome))
     start_selection()
     
 main()
