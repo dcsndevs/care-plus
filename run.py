@@ -22,6 +22,8 @@ def start_selection():
         print("Press 3 - To view instructions\n")
         
         menu_input = input("Enter your selection: \n")
+        if menu_input.lower() == 'exit':
+            custom_exit()
         print()
         validate_menu(menu_input)
         
@@ -73,6 +75,8 @@ def view_students():
         n += 1
     print()    
     select_student = input("Enter your Existing Student Name: \n")
+    if select_student.lower() == 'exit':
+            custom_exit()
     print()
     validate_student_record(all_students, select_student)
     
@@ -85,6 +89,8 @@ def validate_student_record(all_students, select_student):
         print(f"Press 1 to Enter a new record for {select_student.upper()}\nPress 2 to view {select_student.upper()}'s overall progress")
         print()
         sub_view_menu = input("Choose option 1 or 2: \n")
+        if sub_view_menu.lower() == 'exit':
+            custom_exit()
         validate_sub_view_menu(sub_view_menu, select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
@@ -145,6 +151,8 @@ def health_score(student):
         print(f"Enter Health Progress Value for {student}")
         print()
         health_indicator = input("Enter Health Score (0-10): \n")
+        if health_indicator.lower() == 'exit':
+            custom_exit()
         print()
         indicator = health_indicator
         validate_student_progress_input(student, indicator)
@@ -160,6 +168,8 @@ def education_score(student, validated_health_indicator):
         print(f"Enter Education Progress Value for {student}")
         print()
         education_indicator = input("Enter Education Score (0-10): \n")
+        if education_indicator.lower() == 'exit':
+            custom_exit()
         print()
         validate_student_progress_education_input(student, validated_health_indicator, education_indicator)
     
@@ -276,6 +286,8 @@ def create_students():
     print("Welcome to Student Creation") 
     while True:
         studentName = input("Enter your New Student Name: \n")
+        if studentName.lower() == 'exit':
+            custom_exit()
         if validate_student_name(studentName):
             studentName = studentName.upper()
             worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
@@ -323,14 +335,13 @@ def restart():
     """
     while True:
         user_input = input(f"Press enter to restart the program or type 'exit' to Terminate: \n")
+        if user_input.lower() == 'exit':
+            custom_exit()
         if user_input.lower() == '':
             print("Restarting the application...\n")
             main()
         elif user_input.lower() == 'exit':
-            print("Exiting........./n")
-            print("Goodbye!/n")
-            print()
-            exit()
+            custom_exit()
         else:
             print("Invalid seclection\n")
             
@@ -382,6 +393,8 @@ Enjoy using Care Plus App to manage student data and track their progress!
     print(instructions)
     
     user_input = input("Enter 'm' or any key to return to the main menu: ")
+    if user_input.lower() == 'exit':
+            custom_exit()
     if user_input.lower() == 'm':
         return_to_main_menu()
     else:
@@ -395,8 +408,11 @@ def return_to_main_menu():
     print("Returning...\n")
     start_selection()
     
-    
-    
+def custom_exit():
+    print("Exiting application.........\n")
+    print("Goodbye.\n")
+    print()
+    quit() 
 
 
 def main():
