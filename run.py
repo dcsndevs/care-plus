@@ -228,7 +228,7 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
     data = [validated_health_indicator, validated_education_indicator]
     worksheet_to_update = SHEET.worksheet(student)
     worksheet_to_update.append_row(data)
-    print(f"Indicators for {student} have been successfully uploaded!/n")
+    print(f"Indicators for {student} have been successfully uploaded!\n")
     print()
     restart()
 
