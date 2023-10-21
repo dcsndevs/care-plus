@@ -13,26 +13,14 @@ The link to the deployed site can be found [Here](https://care-plus-e6b7c675e391
 ### First-Time Visitor Goals: 
 As a first-time visitor, the goals are:
 
-- Understand the Purpose:
-
-    Gain an understanding of the app's purpose and functionality.
-
-- Navigate the Interface:
-
-    Easily navigate through the menu options.
-
-
-## Returning Visitor Goals:
-As a returning visitor, the goals are:
-
-- Efficient Data Management:
-
-    Manage existing student records efficiently.
-    Create and track progress for new students.
-
-- Explore Features:
-
-    Explore the various features, including viewing instructions, creating students, and viewing existing students.
+- Understand the Purpose of the Careplus App
+- Gain an understanding of the app's purpose and functionality
+- Navigate the Interface: Easily navigate through the menu options
+- Efficient Data Management
+- Manage existing student records efficiently
+- Create and track progress for new students
+- Explore the various features, including viewing instructions, creating students, and viewing existing students.
+- Be able to make informed decision based on data collected over a period of time for a student
 
 ## Logic Flowchart 
 # ![Flowchart](documentation/flow-chart-advance.png)
@@ -106,35 +94,30 @@ Rigorous manual testing was performed to ensure the app's functionality, includi
 </details>
 
 ### Manual Testing: 
-| Feature | Action | Expected Result | Tested | Passed | Comments |
+| Feature | Key Action | Expected Result | Tested | Passed | Comments |
 | --- | --- | --- | --- | --- | --- |
-|     |     |     |     |     |     |
-| *Front Page* |  |  |  |  |  |
-|Focus Input|Key event|Cursor in input field|Yes|Yes|On page load, the cursor is seen in the input field   |
-|Start Button|Click|Attempt login|Yes|Yes|     |
-|Login Validation|Attempt login|Invalid Login|Yes|Yes|At least 2 and not more than 15 characters when used would activate it|
-|LinkedIn icon|Click|Opens a new LinkedIn|Yes|Yes||
-|*Subjects*|     |     |     |     |     |
-|Government|click|Loads Government questions|Yes|Yes|     |
-|Mathematics|click|Loads Mathematics questions|Yes|Yes|     |
-|English|click|Loads English questions|Yes|Yes|     |
-|Timer|Count down|Starts counting|Yes|Yes|Starts counting onload of new subject questions|
-|Time Up|Alert message|Ends practice session|Yes|Yes|An alert pops up as soon as the time counts down to 0|
-|*Buttons*|     |     |     |     |     |
-|Next|Click|Loads next question|Yes|Yes|At the last question|
-|Quit|Click|Attempts to end the practice session|Yes|Yes|A question is asked, so that the user can confirm|
-|Print|Click|Print options opens|Yes|Yes||
-|Exit|Click|The application refreshes|Yes|Yes|The front page is reloaded|
-|     |     |     |     |     |     |
+| *Main Menu Option 1* |  |  |  |  |  |
+|Welcome|Enter 1|Select existing students|Yes|Yes|
+|Welcome to Student Portal |Enter Student Name|Menu Options for student|Yes|Yes|
+|Input New Record|Enter 1|Welcome to Students's Care Progress|Yes|Yes| |
+|Enter Health Progress Value |Enter 0 - 10 value|Opens Education input |Yes|Yes| |
+|Enter Education Progress Value |Enter 0 - 10 value|Accepts values and upload |Yes|Yes| |
+|View Student Overal Progress|Enter 2|Student progress Displayed successfully|Yes|Yes|
+|Rename Student Name |Enter 3 > Enter New name| Name successfuly renamed|Yes|Yes|
+|Delete Student Name & Record|Enter 4 > Conffirm Y or N |Type Student's Name > Successfully delete|Yes|Yes|
+| *Main Menu Option 2* |  |  |  |  |
+|Create a new student|Enter 2|Input prompt > New student name created.|Yes|Yes|
+| *Main Menu Option 3* |  |  |  |  |
+|View program instructions|Enter 3|Programme Instruction displayed|Yes|Yes|
+|Return to Main menu|Enter 'm' or any key| Return to main menu|Yes|Yes|
+|Exit|Enter 'exit' from any input box|The application exits|Yes|Yes|
+|     |     |     |     |     |   
 
 ## Bugs:
 | Issue|Solution |
 |-|-|
-| The timer could be paused by clicking 'Quit' button.|I introduced a 'div' that displayed above the question, allowing the user to confirm their choice while the questions remain hidden |
-| The timer kept running even when a session had ended|I used the 'clearInterval' function to stop the timer |
-| The choice selection for an answer, retained the red color when the user goes to the next question|I set 'const' color for the options|
-| In Mozilla browser, the quit button was immediately taking users to result page, without alerting them to confirm their choice|I removed the alert function and instead added a confirmation button on the 'hide-screen' div |
-|Print button on result page not working for Bing mobile browser| None yet|
+| Warning error: /Users/dcsn/care-plus/run.py:385: DeprecationWarning: Worksheet.delete_row() is deprecated, Please use `Worksheet.delete_rows()` instead|I replaced code with worksheet.delete_row(row) instead |
+
 
 ### Browser Testing: 
 The final project was tested on four different browsers, namely:
@@ -204,6 +187,9 @@ To clone this project, you can do so using VsCode or any code editor that has an
 ## Usage
 
 Follow the on-screen prompts to navigate through the application. Input valid data as guided by the application.
+
+## Future Development and Limitations
+More functionalities would be handy in this application. Extra functionality to include, manually determining the period of time time that a student's overall progress should be populated. It would also go further to include exporting this information to a local machine or sending it to a user provided email address.
 
 
 ## Credits
