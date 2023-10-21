@@ -23,9 +23,11 @@ def start_selection():
     # Clears the terminal
     os.system('cls' if os.name == 'nt' else 'clear')
     while True:
-        print("Press 1 - To select existing students")
-        print("Press 2 - To create a new student")
-        print("Press 3 - To view instructions\n")
+        print("""
+            Press 1 - To select existing students
+            print("Press 2 - To create a new student
+            print("Press 3 - To view instructions
+        """)
         menu_input = input("Enter your selection: \n")
         if menu_input.lower() == 'exit':
             custom_exit()
@@ -45,9 +47,9 @@ def validate_menu(menu_input):
             print(f"{value} is not an option, please try again.\n")
     except ValueError as e:
         print(f"""
-        The key entered in an invalid character.
-        Enter only 1, 2, or 3.
-        """)
+    The key entered in an invalid character.
+    Enter only 1, 2, or 3.
+    """)
         return False
     return start_selection_stage_2(value)
 
@@ -87,13 +89,12 @@ def validate_student_record(all_students, select_student):
         print(f"""
     Welcome to {select_student.upper()}'s management portal.
 
-        Here you can do any of the following:
+                Here you can do any of the following:
 
-        Enter 1 to Input a new record for {select_student.upper()}
-        Enter 2 to View {select_student.upper()}'s overall progress
-        Enter 3 to Rename {select_student.upper()}
-        Enter 4 to Delete {select_student.upper()}'s
-        name and record from the app
+    Enter 1 to Input a new record for {select_student.upper()}
+    Enter 2 to View {select_student.upper()}'s overall progress
+    Enter 3 to Rename {select_student.upper()}
+    Enter 4 to Delete {select_student.upper()}'s name and record from the app
 
 
     """)
@@ -118,8 +119,8 @@ def validate_sub_view_menu(sub_view_menu, select_student):
             print(f"{value} is not an option, please try again.\n")
     except ValueError as e:
         print(f"""
-        The key entered in an invalid character.
-        Enter only 1, 2, or 3.\n""")
+    The key entered in an invalid character.
+    Enter only 1, 2, or 3.\n""")
         return False
     return sub_view_menu_stage_2(value, select_student)
 
@@ -174,8 +175,8 @@ def education_score(student, validated_health_indicator):
     """
     Input Student Health Indicator
     """
-    print(f"""Note: You entered
-    '{validated_health_indicator}' for Health Indicator
+    print(f"""
+    Note: You entered '{validated_health_indicator}' for Health Indicator
     """)
 
     while True:
@@ -199,14 +200,15 @@ def validate_student_progress_education_input(
         if validated_education_indicator not in [
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
         ]:
-            print(f"""{validated_education_indicator} is not an option,
-            please try again. Enter only numbers 0 to 10
-            """)
+            print(f"""
+    {validated_education_indicator} is not an option,
+    please try again. Enter only numbers 0 to 10
+    """)
     except ValueError as e:
         print(f"""
-        The key entered in an invalid character.
-        Enter only numbers 0 to 10.
-        """)
+    The key entered in an invalid character.
+    Enter only numbers 0 to 10.
+    """)
         return False
 
     return insert_health_and_education_column(
@@ -223,9 +225,9 @@ def validate_student_progress_input(student, indicator):
             print(f"{indicator_value} is not an option, please try again.\n")
     except ValueError as e:
         print(f"""
-        The key entered in an invalid character.
-        Enter only numbers 0 to 10.
-        """)
+    The key entered in an invalid character.
+    Enter only numbers 0 to 10.
+    """)
         return False
 
     return insert_health_column(student, indicator_value)
@@ -337,14 +339,16 @@ def create_students():
             worksheet_to_update2.append_row(studentName_list)
 
             print(f"""
-            {studentName} has been created successfully as a student
-            in the database!""")
+    {studentName} has been created successfully as a student
+    in the database!
+  
+    """)
             input("Press Enter to continue...")
             start_selection()
         else:
             print("""
-            Invalid input: Enter only a combination of leters and dot(.)
-            """)
+    Invalid input: Enter only a combination of leters and dot(.)
+    """)
 
 
 def rename_student(select_student):
@@ -373,8 +377,8 @@ def rename_student(select_student):
             rename_student_name(new_student_name, row_number, column_number)
 
             print(f"""
-            {new_student_name} has been successfully renamed in the database!
-            """)
+    {new_student_name} has been successfully renamed in the database!
+    """)
             input("Press Enter to continue...")
             start_selection()
         else:
@@ -403,8 +407,8 @@ def delete_student(select_student):
         if confirmation_input.upper() == select_student.upper():
             select_student = select_student.upper()
             print(f"""
-            Deleting {select_student.upper()} from the application...
-            """)
+    Deleting {select_student.upper()} from the application...
+    """)
             worksheet_to_delete = SHEET.worksheet(select_student)
             SHEET.del_worksheet(worksheet_to_delete)
 
@@ -473,9 +477,9 @@ def restart():
     """Restart or exit the Application"""
     while True:
         user_input = input(f"""
-        Press enter to restart the program
-        or type 'exit' to Terminate:
-        """)
+    Press enter to restart the program
+    or type 'exit' to Terminate:
+    """)
         if user_input.lower() == 'exit':
             custom_exit()
         if user_input.lower() == '':
@@ -491,11 +495,6 @@ def restart():
 
 def view_instructions():
     """Display Instructions for using the Care Plus App"""
-    welcome = "Welcome to Care Plus App Instructions"
-    print("=" * len(welcome))
-    print(welcome)
-    print("=" * len(welcome))
-
     print(instructions)
 
     user_input = input("Enter 'm' or any key to return to the main menu: ")
