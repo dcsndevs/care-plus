@@ -92,10 +92,10 @@ def validate_student_record(all_students, select_student):
         sub_view_menu = input("Choose option 1, 2, 3 or 4: \n")
         if sub_view_menu.lower() == 'exit':
             custom_exit()
-        if int(sub_view_menu) == 3:
-            rename_student(select_student)
-        if int(sub_view_menu) == 4:
-            delete_student(select_student)
+        # if int(sub_view_menu) == 3:
+        #     rename_student(select_student)
+        # if int(sub_view_menu) == 4:
+        #     delete_student(select_student)
         validate_sub_view_menu(sub_view_menu, select_student)
     else:
         print("Invalid Entry! Ensure your entry exists in the database.")
@@ -107,7 +107,7 @@ def validate_sub_view_menu(sub_view_menu, select_student):
     """
     try:
         value = int(sub_view_menu)
-        if value not in [1, 2]:
+        if value not in [1, 2, 3, 4]:
             print(f"{value} is not an option, please try again.\n"
             )
     except ValueError as e:
@@ -127,11 +127,15 @@ def sub_view_menu_stage_2(value, select_student):
         health_list = SHEET.worksheet(select_student).col_values(1)[1:]
         education_list = SHEET.worksheet(select_student).col_values(2)[1:]
         print()
-        if len(health_list) or len(education_list) == 0:
+        if len(education_list) == 0:
             print("This student has no records yet!\n")
             return student_progress_entry(select_student)
         else:
          view_student_summary(select_student)
+    elif menu_inputed == 3:
+            rename_student(select_student)
+    elif menu_inputed == 4:
+            delete_student(select_student)
     else:
         print("Invalid Selection")
     
@@ -297,7 +301,7 @@ def create_students():
             worksheet_to_update2.append_row(studentName_list)
     
             print(f"{studentName} has been created successfully as a student in the database!\n")
-            main()
+            restart()
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
             
@@ -329,7 +333,7 @@ def rename_student(select_student):
             rename_student_name(new_student_name, row_number, column_number)
     
             print(f"{new_student_name} has been successfully renamed in the database!\n")
-            main()
+            restart()
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
     
