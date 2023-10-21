@@ -12,6 +12,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('care-plus')
 
+
 def start_selection():
     """
     Select from menu options
@@ -27,10 +28,12 @@ def start_selection():
         print()
         validate_menu(menu_input)
                     
+
 def validate_menu(menu_input):
     """
     Checks for int value of inputed data from start menu input,
-    raises ValueError of string cannot be converted into int, or if the input is wrong
+    raises ValueError of string cannot be converted into int, 
+    or if the input is wrong
     """
     try:
         value = int(menu_input)
@@ -42,6 +45,7 @@ def validate_menu(menu_input):
         print(f"The key entered in an invalid character. Enter only 1, 2, or 3.\n")
         return False
     return start_selection_stage_2(value)
+
 
 def start_selection_stage_2(value):
     """
@@ -56,6 +60,7 @@ def start_selection_stage_2(value):
         view_instructions()
     else:
         print("Invalid Selection")
+
 
 def view_students():
     """
@@ -76,6 +81,7 @@ def view_students():
     print()
     validate_student_record(all_students, select_student)
     
+
 def validate_student_record(all_students, select_student):
     """
     Validate student selection
@@ -101,6 +107,7 @@ def validate_student_record(all_students, select_student):
         print("Invalid Entry! Ensure your entry exists in the database.")
         return view_students()
 
+
 def validate_sub_view_menu(sub_view_menu, select_student):
     """
     Validate Sub view Menu
@@ -114,6 +121,7 @@ def validate_sub_view_menu(sub_view_menu, select_student):
         print(f"The key entered in an invalid character. Enter only 1, 2, or 3.\n")
         return False
     return sub_view_menu_stage_2(value, select_student)
+
 
 def sub_view_menu_stage_2(value, select_student):
     """
@@ -139,6 +147,7 @@ def sub_view_menu_stage_2(value, select_student):
     else:
         print("Invalid Selection")
     
+
 def student_progress_entry(select_student):
     """
     For inputing student's progress on health and educaation
@@ -148,6 +157,7 @@ def student_progress_entry(select_student):
     student = select_student.upper()
     health_score(student)
     
+
 def health_score(student):
     """
     Inpur Student Health Indicator
@@ -161,6 +171,7 @@ def health_score(student):
         print()
         indicator = health_indicator
         validate_student_progress_input(student, indicator)
+
 
 def education_score(student, validated_health_indicator):
     """
@@ -177,6 +188,7 @@ def education_score(student, validated_health_indicator):
         print()
         validate_student_progress_education_input(student, validated_health_indicator, education_indicator)
     
+
 def validate_student_progress_education_input(student, validated_health_indicator, education_indicator):
     """
     Student validator input for Education
@@ -193,6 +205,7 @@ def validate_student_progress_education_input(student, validated_health_indicato
         
     return insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator)
     
+
 def validate_student_progress_input(student, indicator):
     """
     Student progress input validator
@@ -209,6 +222,7 @@ def validate_student_progress_input(student, indicator):
         
     return insert_health_column(student, indicator_value)
 
+
 def insert_health_column(student, indicator_value):
     """
     Collect and hold validated Health indicator value
@@ -217,6 +231,7 @@ def insert_health_column(student, indicator_value):
     validated_health_indicator = indicator_value
     education_score(student, validated_health_indicator)
     
+
 def insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator):
     """
     Health and Education column entries - done simultaneously
@@ -231,6 +246,7 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
     print(f"Indicators for {student} have been successfully uploaded!\n")
     print()
     restart()
+
 
 def view_student_summary(select_student):
     """
@@ -262,6 +278,7 @@ def view_student_summary(select_student):
     restart()
 
 #ChatGPT assisted in creating this function    
+
 def create_bar_chart(data):
     """
     Pictorial record display
@@ -280,6 +297,7 @@ def create_bar_chart(data):
     # Print x-axis
     print("-" * (2 * len(data)))
 
+
 def create_students():
     """
     Student creation
@@ -289,6 +307,9 @@ def create_students():
         studentName = input("Enter your New Student Name: \n")
         if studentName.lower() == 'exit':
             custom_exit()
+        elif len(studentName) > 30:
+            print("Student name cannont be more than 30 characters")
+            return False
         if validate_student_name(studentName):
             studentName = studentName.upper()
             worksheet = SHEET.add_worksheet(title = studentName, rows=1000, cols=3)
@@ -305,6 +326,7 @@ def create_students():
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
             
+
 def rename_student(select_student):
     """
     Change Student name
@@ -339,6 +361,7 @@ def rename_student(select_student):
     
     
             
+
 def delete_student(select_student):
     """
     Delete student name and record from app
@@ -375,15 +398,18 @@ def delete_student(select_student):
         print("Invalid input...Program would now exit")
         custom_exit()
 
+
 def rename_student_name(studentName, row, col):
     worksheet = SHEET.worksheet("student_list")
     worksheet.update_cell(row, col, str(studentName))
     print("Student Name Changed....\n")
 
+
 def delete_student_name(row, col):
     worksheet = SHEET.worksheet("student_list")
     worksheet.delete_rows(row)
     print("Student Name Deleted....\n")
+
 
 def validate_student_name(student_name_input):
     """
@@ -407,6 +433,7 @@ def validate_student_name(student_name_input):
             print("Your student name combination is not allowed.\nEnter a combination of at least 2 letters and no more than 1 dot.\nYou also cannot start your input with two dot(..)")
             return False
     
+
 def restart():
     """
     Restart or exit the Application
@@ -423,6 +450,7 @@ def restart():
         else:
             print("Invalid seclection\n")
             
+
 def view_instructions():
     """
     Display Instructions for using the Care Plus App
@@ -481,6 +509,7 @@ Enjoy using Care Plus App to manage student data and track their progress!
         print("Returning to the main menu...\n")
         return_to_main_menu()
         
+
 def return_to_main_menu():
     """
     Back to Main menu
@@ -488,6 +517,7 @@ def return_to_main_menu():
     print("Returning...\n")
     start_selection()
     
+
 def custom_exit():
     """
     Special exit for leaving the program from all input fields
@@ -497,6 +527,7 @@ def custom_exit():
     print("Goodbye.\n")
     print()
     quit() 
+
 
 def main():
     """
