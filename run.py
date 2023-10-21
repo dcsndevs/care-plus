@@ -482,15 +482,25 @@ def custom_exit():
 def welcome():
     """Welcome area containing logo and message"""
     print(logo)
-    welcome = "Welcome to Care Plus App"
+    welcome = "Welcome to Care Plus App!"
     print("=" * len(welcome))
     print(welcome)
     print("=" * len(welcome))
+    
+    print("""
+    This application helps you manage student data and track their progress. 
+    It was designed to help solve the WellTree model of health and social care management.
+    Whether you're a teacher, guardian, or student, Care Plus 
+    is designed to make tracking educational and health indicators a breeze.
+    
+    Press Enter to embark on a journey of streamlined student management!
+    """)
 
 
 def main():
     """Run all program functions"""
     welcome()
+    input("Press Enter to continue...")
     start_selection()
 
 
