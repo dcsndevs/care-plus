@@ -255,6 +255,7 @@ def insert_health_and_education_column(
     worksheet_to_update = SHEET.worksheet(student)
     worksheet_to_update.append_row(data)
     print(f"Indicators for {student} have been successfully uploaded!\n")
+    input("Press Enter to continue...")
     start_selection()
 
 
@@ -288,6 +289,7 @@ def view_student_summary(select_student):
     create_bar_chart(data)
 
     print("." * 35)
+    input("Press Enter to continue...")
     start_selection()
 
 
@@ -337,6 +339,7 @@ def create_students():
             print(f"""
             {studentName} has been created successfully as a student
             in the database!""")
+            input("Press Enter to continue...")
             start_selection()
         else:
             print("""
@@ -372,6 +375,7 @@ def rename_student(select_student):
             print(f"""
             {new_student_name} has been successfully renamed in the database!
             """)
+            input("Press Enter to continue...")
             start_selection()
         else:
             print("""
