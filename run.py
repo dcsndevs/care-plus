@@ -394,6 +394,7 @@ def delete_student(select_student):
     """)
     user_input = input("Are you sure?\nY- Yes or N- No: \n")
     if user_input.lower() == "n" or user_input.lower() == "no":
+        input("Press Enter to exit...")
         start_selection()
     elif user_input.lower() == "y" or user_input.lower() == "yes":
         print("""
