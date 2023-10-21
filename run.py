@@ -24,9 +24,9 @@ def start_selection():
     os.system('cls' if os.name == 'nt' else 'clear')
     while True:
         print("""
-            Press 1 - To select existing students
-            Press 2 - To create a new student
-            Press 3 - To view instructions
+    Press 1 - To select existing students
+    Press 2 - To create a new student
+    Press 3 - To view instructions
         """)
         menu_input = input("Enter your selection: \n")
         if menu_input.lower() == 'exit':
@@ -383,8 +383,8 @@ def rename_student(select_student):
             start_selection()
         else:
             print("""
-            nvalid input: Enter only a combination of leters and dot(.)
-            """)
+    Invalid input: Enter only a combination of leters and dot(.)
+    """)
 
 
 def delete_student(select_student):
@@ -398,9 +398,9 @@ def delete_student(select_student):
     elif user_input.lower() == "y" or user_input.lower() == "yes":
         print("""
 
-              This can not be  undone!
+    This can not be  undone!
 
-              """)
+    """)
         confirmation_input = input(
             f"Type {select_student.upper()} to delete: \n"
         )
@@ -421,10 +421,10 @@ def delete_student(select_student):
             delete_student_name(row_number, column_number)
 
             print("""
-            Student Record deleted...
-            print("Student profile deletion is complete.
-            Application would now restart
-            """)
+    Student Record deleted...
+    print("Student profile deletion is complete.
+    Application would now restart
+    """)
             restart()
         else:
             print("Invalid input...Program would now exit\n\n")
@@ -458,18 +458,18 @@ def validate_student_name(student_name_input):
         for char in student_name_input:
             if char not in allowed_characters:
                 print("""
-                      Invalid Characters detected...Try again
-                      Only a combination of letters and '.' can be entered
-                      """)
+    Invalid Characters detected...Try again
+    Only a combination of letters and '.' can be entered
+    """)
                 return False
         if re.match(pattern, student_name_input):
             return True
         else:
             print("""
-                  Your student name combination is not allowed.
-                  Use a combination of at least 2 letters & no more than 1 dot
-                  You also cannot start your input with two dot(..)
-                  """)
+    Your student name combination is not allowed.
+    Use a combination of at least 2 letters & no more than 1 dot
+    You also cannot start your input with two dot(..)
+    """)
             return False
 
 
@@ -517,10 +517,10 @@ def return_to_main_menu():
 def custom_exit():
     """Special exit for leaving the program from all input fields"""
     print("""
-        Exiting application.........
+    Exiting application.........
 
-        Goodbye.
-        """)
+    Goodbye.
+    """)
     quit()
 
 
