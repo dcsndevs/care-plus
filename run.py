@@ -382,7 +382,7 @@ def rename_student_name(studentName, row, col):
 
 def delete_student_name(row, col):
     worksheet = SHEET.worksheet("student_list")
-    worksheet.delete_row(row)
+    worksheet.delete_rows(row)
     print("Student Name Deleted....\n")
 
 def validate_student_name(student_name_input):
