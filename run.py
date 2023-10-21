@@ -30,7 +30,6 @@ def start_selection():
         menu_input = input("Enter your selection: \n")
         if menu_input.lower() == 'exit':
             custom_exit()
-        print()
         validate_menu(menu_input)
                     
 
@@ -86,14 +85,19 @@ def view_students():
 def validate_student_record(all_students, select_student):
     """Validate student selection"""
     if select_student.upper() in all_students:
-        print(f"Welcome to {select_student.upper()}'s management portal\n\nHere you can do any of the following:")
         print(f"""
-    Enter 1 to Input a new record for {select_student.upper()}
-    Enter 2 to View {select_student.upper()}'s overall progress
-    Enter 3 to Rename {select_student.upper()}
-    Enter 4 to Delete {select_student.upper()}'s name and record from the app\n
+    Welcome to {select_student.upper()}'s management portal.
+        
+        Here you can do any of the following:
+    
+        Enter 1 to Input a new record for {select_student.upper()}
+        Enter 2 to View {select_student.upper()}'s overall progress
+        Enter 3 to Rename {select_student.upper()}
+        Enter 4 to Delete {select_student.upper()}'s 
+        name and record from the app
+
+
     """)
-        print()
         sub_view_menu = input("Choose option 1, 2, 3 or 4: \n")
         if sub_view_menu.lower() == 'exit':
             custom_exit()
@@ -145,17 +149,19 @@ def sub_view_menu_stage_2(value, select_student):
 
 def student_progress_entry(select_student):
     """For inputing student's progress on health and educaation"""
-    print()
-    print(f"Welcome to {select_student.upper()}'s Care Progress\n")
+    print(f"""
+          
+    Welcome to {select_student.upper()}'s Care Progress
+    
+    """)
     student = select_student.upper()
     health_score(student)
     
 
 def health_score(student):
-    """Inpur Student Health Indicator"""
+    """Input Student Health Indicator"""
     while True:
-        print(f"Enter Health Progress Value for {student}")
-        print()
+        print(f"Enter Health Progress Value for {student}\n")
         health_indicator = input("Enter Health Score (0-10): \n")
         if health_indicator.lower() == 'exit':
             custom_exit()
@@ -171,8 +177,7 @@ def education_score(student, validated_health_indicator):
     print(f"Note: You entered '{validated_health_indicator}' for Health Indicator\n")
           
     while True:
-        print(f"Enter Education Progress Value for {student}")
-        print()
+        print(f"Enter Education Progress Value for {student}\n")
         education_indicator = input("Enter Education Score (0-10): \n")
         if education_indicator.lower() == 'exit':
             custom_exit()
@@ -221,15 +226,17 @@ def insert_health_column(student, indicator_value):
 
 def insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator):
     """Health and Education column entries - done simultaneously"""
-    print()
-    print(f"Entries for {student}:")
-    print("Health Indicator = " + str(validated_health_indicator))
-    print("Education Indicator = " + str(validated_education_indicator))
+    print(f"""
+    
+    Entries for {student}:
+    Health Indicator = {validated_health_indicator}
+    Education Indicator = {validated_education_indicator}
+    
+    """)
     data = [validated_health_indicator, validated_education_indicator]
     worksheet_to_update = SHEET.worksheet(student)
     worksheet_to_update.append_row(data)
     print(f"Indicators for {student} have been successfully uploaded!\n")
-    print()
     start_selection()
 
 
@@ -245,13 +252,15 @@ def view_student_summary(select_student):
     health_average =  sum(health_list) / len(health_list)
     education_average =  sum(education_list) / len(education_list)
 
-    print()
-    print(f"The Health average for {select_student} is {round(health_average, 1)}\n")
+    print(f"""
+          
+    The Health average for {select_student} is {round(health_average, 1)}
+    
+    """)
     
     data = health_list
     create_bar_chart(data)
     
-    print()
     print(f"The Education average for {select_student} is {round(education_average, 1)}\n")
     
     data = education_list
@@ -261,7 +270,6 @@ def view_student_summary(select_student):
     start_selection()
 
 #ChatGPT assisted in creating this function    
-
 def create_bar_chart(data):
     """Pictorial record display"""
     max_value = max(data)
@@ -348,8 +356,11 @@ def delete_student(select_student):
     if user_input.lower() == "n" or user_input.lower() == "no":
         custom_exit()
     elif user_input.lower() == "y" or user_input.lower() == "yes":
-        print()
-        print("This can not be  undone!\n\n")
+        print("""
+              
+              This can not be  undone!
+              
+              """)
         confirmation_input = input(f"Type {select_student.upper()} to delete: \n")
         if confirmation_input.upper() == select_student.upper():
             select_student = select_student.upper()
@@ -397,15 +408,21 @@ def validate_student_name(student_name_input):
     
     pattern = r'^[a-zA-Z]{2,}'
     while True:
-        print()
         for char in student_name_input:
             if char not in allowed_characters:
-                print("Invalid Characters detected...Try again\nOnly a combination of letters and '.' can be entered\n")
+                print("""
+                      Invalid Characters detected...Try again
+                      Only a combination of letters and '.' can be entered
+                      """)
                 return False
         if re.match(pattern, student_name_input):
             return True
         else:
-            print("Your student name combination is not allowed.\nEnter a combination of at least 2 letters and no more than 1 dot.\nYou also cannot start your input with two dot(..)")
+            print("""
+                  Your student name combination is not allowed.
+                  Enter a combination of at least 2 letters and no more than 1 dot.
+                  You also cannot start your input with two dot(..)
+                  """)
             return False
     
 
@@ -454,10 +471,11 @@ def return_to_main_menu():
 
 def custom_exit():
     """Special exit for leaving the program from all input fields"""
-    print()
-    print("Exiting application.........\n")
-    print("Goodbye.\n")
-    print()
+    print("""
+        Exiting application.........
+          
+        Goodbye.
+        """)
     quit() 
 
 
