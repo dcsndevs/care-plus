@@ -72,13 +72,17 @@ Rigorous manual testing was performed to ensure the app's functionality, includi
 ### Input Validation Testing: 
 <details><summary>Menu Selection</summary>
 - Enter a number other than 1, 2, 3
+
 <img src="documentation/enter-wrong-number.png">
+
 - Enter a string or other characters
+
 <img src="documentation/enter-string.png">-
 
 </details>
 <details><summary>Select a student</summary>
 - Anything other than the sudent record in the database
+
 <img src="documentation/no-student-record.png">
 </details>
 
@@ -100,12 +104,12 @@ Student creation comes with multiple validations:
 | *Main Menu Option 1* |  |  |  |  |  |
 |Welcome|Enter 1|Select existing students|Yes|Yes|
 |Welcome to Student Portal |Enter Student Name|Menu Options for student|Yes|Yes|
-|Input New Record|Enter 1|Welcome to Students's Care Progress|Yes|Yes| |
+|Input New Record|Enter 1|Welcome to Student's Care Progress|Yes|Yes| |
 |Enter Health Progress Value |Enter 0 - 10 value|Opens Education input |Yes|Yes| |
 |Enter Education Progress Value |Enter 0 - 10 value|Accepts values and upload |Yes|Yes| |
-|View Student Overal Progress|Enter 2|Student progress Displayed successfully|Yes|Yes|
-|Rename Student Name |Enter 3 > Enter New name| Name successfuly renamed|Yes|Yes|
-|Delete Student Name & Record|Enter 4 > Conffirm Y or N |Type Student's Name > Successfully delete|Yes|Yes|
+|View Student Overall Progress|Enter 2|Student progress Displayed successfully|Yes|Yes|
+|Rename Student Name |Enter 3 > Enter New name| Name successfully renamed|Yes|Yes|
+|Delete Student Name & Record|Enter 4 > Confirm Y or N |Type Student's Name > Successfully delete|Yes|Yes|
 | *Main Menu Option 2* |  |  |  |  |
 |Create a new student|Enter 2|Input prompt > New student name created.|Yes|Yes|
 | *Main Menu Option 3* |  |  |  |  |
@@ -117,10 +121,10 @@ Student creation comes with multiple validations:
 ## Bugs:
 | Issue|Solution |
 |-|-|
-| Warning error: /Users/dcsn/care-plus/run.py:385: DeprecationWarning: Worksheet.delete_row() is deprecated, Please use `Worksheet.delete_rows()` instead|I replaced code with worksheet.delete_row(row) instead |
+| Warning error received: /Users/dcsn/care-plus/run.py:385: DeprecationWarning: Worksheet.delete_row() is deprecated, Please use `Worksheet.delete_rows()` instead|I replaced the code with `worksheet.delete_row(row)` instead |
 
 ### CI Python Linter:
-The CI Python Linter https://pep8ci.herokuapp.com/ was used to test for errors in the code. No errors were found except for warning concerning white spaces or characters being longer than the 79 characters that was originally deisgned for the application
+The CI Python Linter https://pep8ci.herokuapp.com/ was used to test for errors in the code. No errors were found except for warning concerning white spaces or characters being longer than the 79 characters that was originally designed for the application
 
 ![CI Python Test](documentation/ci-python-test.png)
 
@@ -130,7 +134,7 @@ Lucid was used to draw mock-ups for the initial app design to guide the developm
 ![Lucid Sketch](documentation/flow-chart-simple.png)
 
 ## Technologies used:
-- [Python](https://python.org) is the main technolgy used in this application
+- [Python](https://python.org) is the main technology used in this application
 - [Lucid](https://lucid.com) was used to create workflows for guidance in building the application
 - [VScode](https://vscode.com/) was used to write and edit the codes and host the site on my local  computer
 - [Git](https://github.com) was used for the version control of the application
@@ -141,9 +145,9 @@ Lucid was used to draw mock-ups for the initial app design to guide the developm
 
 ## Deployment
 
-The template for this app was generated from Code-Institute-Org/p3-template. The repository was cloned on a local VSCode machine and then stored/managed on Github. 
+The template for this app was generated from Code-Institute-Org/p3-template. The repository was cloned on a local VSCode machine and then stored/managed on GitHub. 
 
-The Heroku gi URl is https://git.heroku.com/care-plus.git
+The Heroku git URl is https://git.heroku.com/care-plus.git
 
 The app was then deployed on Heroku via Github:
 
@@ -207,26 +211,26 @@ To instal this use: `pip3 install google-auth`
 Follow the on-screen prompts to navigate through the application. Input valid data as guided by the application.
 
 ## Future Development and Limitations
-More functionalities would be handy in this application. Extra functionality to include, manually determining the period of time time that a student's overall progress should be populated. It would also go further to include exporting this information to a local machine or sending it to a user provided email address.
+More functionalities would be handy in this application. Extra functionality to include, manually determining the period of time that a student's overall progress should be populated. It would also go further to include exporting this information to a local machine or sending it to a user provided email address.
 
 
 ## Credits
 
 ### Code Institute:
-Special thanks to Code Institute for providing the template used in this project. The template served as a valuable foundation, streamlining the development process and contributing to the overall project structure and therefafter, delployment.
+Special thanks to Code Institute for providing the template used in this project. The template served as a valuable foundation, streamlining the development process and contributing to the overall project structure and theref after deployment.
 
 ### Google:
 The Care Plus App relies on Google Cloud services, including the Google Sheets API, for efficient data management. I extend my gratitude to Google Cloud for providing a free, robust and reliable cloud solutions that contribute to the functionality of this application.
 
 ### API: 
-Also to the team that created the Gsrpead and it's documentation, and to Google Drive and Google Sheets ApI. The Care Plus App utilizes the gspread library to interact with the Google Sheets API for efficient data management. We appreciate the developers of gspread for providing a convenient and Pythonic way to work with Google Sheets.
+Also to the team that created the Gspread and its documentation, and to Google Drive and Google Sheets API. The Care Plus App utilizes the gspread library to interact with the Google Sheets API for efficient data management. We appreciate the developers of gspread for providing a convenient and Pythonic way to work with Google Sheets.
 
 ### Code Reference:
 [W3schools](https://w3schools.com/) was instrumental to the success of this project. It was often used to learn quick features or to compare and see where errors are.
 
 ### CarePlus Logic: 
-The logic behid the application is a real life application called [©WellTree] (https://www.welltree.info/)
-Welltree inputs are manually done on an excel worksheet, but this application was built with the intention of automating the inputs and view student progress over time.
+The logic behind the application is a real life application called [©WellTree] (https://www.welltree.info/)
+WellTree inputs are manually done on an excel worksheet, but this application was built with the intention of automating the inputs and view student progress over time.
 
 ### Acknowledgments:
 I like to thank [Juliia Konn](https://github.com/IuliiaKonovalova/), my mentor at Code Institute. She exemplifies her mentorship with a knack for high-quality projects. Her desire for quality has always challenged me to do better in my work. I remain grateful to her.
