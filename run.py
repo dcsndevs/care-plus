@@ -25,8 +25,8 @@ def start_selection():
     while True:
         print("""
             Press 1 - To select existing students
-            print("Press 2 - To create a new student
-            print("Press 3 - To view instructions
+            Press 2 - To create a new student
+            Press 3 - To view instructions
         """)
         menu_input = input("Enter your selection: \n")
         if menu_input.lower() == 'exit':
@@ -87,9 +87,9 @@ def validate_student_record(all_students, select_student):
     """Validate student selection"""
     if select_student.upper() in all_students:
         print(f"""
-    Welcome to {select_student.upper()}'s management portal.
+            Welcome to {select_student.upper()}'s management portal.
 
-                Here you can do any of the following:
+    Here you can do any of the following:
 
     Enter 1 to Input a new record for {select_student.upper()}
     Enter 2 to View {select_student.upper()}'s overall progress
@@ -341,7 +341,7 @@ def create_students():
             print(f"""
     {studentName} has been created successfully as a student
     in the database!
-  
+
     """)
             input("Press Enter to continue...")
             start_selection()
@@ -394,7 +394,7 @@ def delete_student(select_student):
     """)
     user_input = input("Are you sure?\nY- Yes or N- No: \n")
     if user_input.lower() == "n" or user_input.lower() == "no":
-        custom_exit()
+        start_selection()
     elif user_input.lower() == "y" or user_input.lower() == "yes":
         print("""
 
@@ -495,8 +495,8 @@ def restart():
 
 def view_instructions():
     """Display Instructions for using the Care Plus App"""
+    os.system('cls' if os.name == 'nt' else 'clear')
     print(instructions)
-
     user_input = input("Enter 'm' or any key to return to the main menu: ")
     if user_input.lower() == 'exit':
         custom_exit()
@@ -527,11 +527,6 @@ def custom_exit():
 def welcome():
     """Welcome area containing logo and message"""
     print(logo)
-    welcome = "Welcome to Care Plus App!"
-    print("=" * len(welcome))
-    print(welcome)
-    print("=" * len(welcome))
-
     print("""
     This application helps you manage student data and track their progress.
     It was designed to help solve the WellTree model of
