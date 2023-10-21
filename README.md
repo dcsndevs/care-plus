@@ -16,9 +16,9 @@ As a first-time visitor, the goals are:
 - Understand the Purpose of the Careplus App
 - Gain an understanding of the app's purpose and functionality
 - Navigate the Interface: Easily navigate through the menu options
-- Efficient Data Management
+- Efficient Data Management of student record
 - Manage existing student records efficiently
-- Create and track progress for new students
+- Create and track progress for new students and old student's health and education indicator data
 - Explore the various features, including viewing instructions, creating students, and viewing existing students.
 - Be able to make informed decision based on data collected over a period of time for a student
 
@@ -69,28 +69,31 @@ There are currently two indicators (Health and Education) that are used to store
 ## Testing
 Rigorous manual testing was performed to ensure the app's functionality, including user inputs, menu navigation, and data entry.
 
-<details><summary>Computer - Big Screens (1440 x 697)</summary>
-<img src="documentation/front-page-big.png">
-<img src="documentation/subject-page-big.png">
-<img src="documentation/question-page-big.png">
-<img src="documentation/quit-page-big.png">
-<img src="documentation/result-page-big.png">
+### Input Validation Testing: 
+<details><summary>Menu Selection</summary>
+- Enter a number other than 1, 2, 3
+<img src="documentation/enter-wrong-number.png">
+- Enter a string or other characters
+<img src="documentation/enter-string.png">-
+
 </details>
 
-<details><summary>Laptop - Medium Screens (768 * 697)</summary>
-<img src="documentation/front-page-tablet.png">
-<img src="documentation/subject-page-tablet.png">
-<img src="documentation/question-page-tablet.png">
-<img src="documentation/quit-page-tablet.png">
-<img src="documentation/result-page-tablet.png">
+<details><summary>Select a student</summary>
+- Anything other than the sudent record in the database
+<img src="documentation/no-student-record.png">
 </details>
 
-<details><summary>Mobile Phone - Small Screens (375 x 697)</summary>
-<img src="documentation/front-page-mobile.png">
-<img src="documentation/subject-page-mobile.png">
-<img src="documentation/question-page-mobile.png">
-<img src="documentation/quit-page-mobile.png">
-<img src="documentation/result-page-mobile.png">
+<details><summary>Create New Student</summary>
+Student creation comes with multiple validations:
+- Name cannot be empty
+- Name cannot start with a space
+- Name must start with at least 2 letters
+- Name can include at least one dot '.'
+- Name can not be more than 30 Characters
+
+<img src="documentation/student-creation-validation.png">
+<img src="documentation/student-creation-validation-2.png">
+
 </details>
 
 ### Manual Testing: 
@@ -119,20 +122,11 @@ Rigorous manual testing was performed to ensure the app's functionality, includi
 | Warning error: /Users/dcsn/care-plus/run.py:385: DeprecationWarning: Worksheet.delete_row() is deprecated, Please use `Worksheet.delete_rows()` instead|I replaced code with worksheet.delete_row(row) instead |
 
 
-### Browser Testing: 
-The final project was tested on four different browsers, namely:
--Microsoft Internet Explorer
--Google Chrome
--Brave
--Mozilla Firefox
-However, the application did not work on Mobile devices and the display was unresponsive.
-
-
 
 ### CI Python Linter:
 The CI Python Linter https://pep8ci.herokuapp.com/ was used to test for errors in the code. No errors were found except for warning concerning white spaces or characters being longer than the 79 characters that was originally deisgned for the application
 
-![JSHint test](documentation/js-hint.png)
+![CI Python Test](documentation/ci-python-test.png)
 
 ## Lucid:
 Lucid was used to draw mock-ups for the initial app design to guide the development of this project.
@@ -140,14 +134,14 @@ Lucid was used to draw mock-ups for the initial app design to guide the developm
 ![Lucid Sketch](documentation/flow-chart-simple.png)
 
 ## Technologies used:
-- Python is the main technolgy used in this application
-- Luci was used to create workflows for guidance in builfing the application
-- VScode was used to write and edit the codes and host the site on my local computer
-- Git was used for the version control of the application
-- Heroku was used to host the deployed application
-- ChatGPT was often consulted regarding the usage and construction of codes
-- Google Chrome's "Screenshot & Screen Recorder" plugin was used to create the site logo
-- Code Institute Python Linter was used to check code for any issues
+- [Python](https://python.org) is the main technolgy used in this application
+- [Lucid](https://lucid.com) was used to create workflows for guidance in building the application
+- [VScode](https://vscode.com/) was used to write and edit the codes and host the site on my local computer
+- [Git](https://github.com) was used for the version control of the application
+- [Heroku](https://heroku.com) was used to host the deployed application
+- [ChatGPT](https://chat.openai.com/) was often consulted regarding the usage and construction of codes
+- Google Chrome's [Screenshot & Screen Recorder](https://chrome.google.com/webstore/detail/screenshot-screen-recorde/okkffdhbfplmbjblhgapnchjinanmnij) plugin was used to create the site logo
+- [Code Institute Python Linter](https://pep8ci.herokuapp.com/) was used to check code for any issues
 
 ## Deployment
 
@@ -158,17 +152,42 @@ The Heroku gi URl is https://git.heroku.com/care-plus.git
 
 The app was then deployed on Heroku via Github:
 
-1. Log in to Heroku or create a new account
-2. On the main page click "New" and select "Create new app"
-3. Choose your unique app name and select your region
-4. Click "Create app"
-5. On the next page find "settings" and locate "Config Vars"
-6. Click "Reveal Config Vars" and add "PORT" key and value "8000", click "Add"
-7. Scroll down, locate "Buildpack" and click "Add", select "Python"
-8. Repeat step 7. only this time add "Node.js", make sure "Python" is first
-9. Scroll to the top and select "Deploy" tab
-10. Select GitHub as deployment method and search for your repository and link them together
-11. Scroll down and select either "Enable Automatic Deploys" or "Manual Deploy"
+
+
+1. Heroku Account Setup:
+
+    Log in to your existing Heroku account or create a new account.
+
+2. Create a New App:
+
+    On the Heroku dashboard, click "New" and select "Create new app."
+
+3. Configure Your App:
+
+    Choose a unique app name and select your preferred region.
+    Click "Create app" to initiate the app creation process.
+
+4. Environment Configuration:
+
+    In the app dashboard, find the "Settings" tab and locate "Config Vars."
+    Click "Reveal Config Vars" and add a new variable with the key "PORT" and the value "8000." Click "Add" to save.
+
+5. Set Up Buildpacks:
+
+    Scroll down to the "Buildpack" section in the settings.
+    Click "Add," select "Python," and add it. Ensure that "Python" is listed first.
+    Repeat the process, this time adding "Node.js" as a buildpack.
+
+6. Deploy Your App:
+
+    Navigate to the "Deploy" tab at the top of the dashboard.
+    Choose GitHub as your deployment method and link your repository to the app.
+
+7. Automatic or Manual Deployment:
+
+    Scroll down to the deployment section.
+    Choose either "Enable Automatic Deploys" for continuous integration or "Manual Deploy" for manual control.
+
 Deployed site -> [Here](https://care-plus-e6b7c675e391.herokuapp.com/)
 
 
@@ -176,13 +195,20 @@ Deployed site -> [Here](https://care-plus-e6b7c675e391.herokuapp.com/)
 ### Local Deployment:
 To clone this project, you can do so using VsCode or any code editor that has an integrated development Environment (IDE), using this command: 
 
+1. Clone the repository: `git clone https://github.com/your-username/care-plus-app.git`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Add your Google Sheets credentials to `creds.json` -  [Created from Google Cloud Console](https://console.cloud.google.com/)
+4. Run the application: `python app.py`
+
      git clone https://github.com/dcsndevs/care-plus.git 
 
 
 ## Dependencies
 
 - [gspread](https://gspread.readthedocs.io/en/latest/)
+To instal this use: `pip3 install gspread`
 - [oauth2client](https://oauth2client.readthedocs.io/en/latest/)
+To instal this use: `pip3 install google-auth`
 
 ## Usage
 
@@ -194,8 +220,17 @@ More functionalities would be handy in this application. Extra functionality to 
 
 ## Credits
 
+### Code Institute:
+Special thanks to Code Institute for providing the template used in this project. The template served as a valuable foundation, streamlining the development process and contributing to the overall project structure and therefafter, delployment.
+
+### Google:
+The Care Plus App relies on Google Cloud services, including the Google Sheets API, for efficient data management. I extend my gratitude to Google Cloud for providing a free, robust and reliable cloud solutions that contribute to the functionality of this application.
+
+### API: 
+Also to the team that created the Gsrpead and it's documentation, and to Google Drive and Google Sheets ApI. The Care Plus App utilizes the gspread library to interact with the Google Sheets API for efficient data management. We appreciate the developers of gspread for providing a convenient and Pythonic way to work with Google Sheets.
+
 ### Code Reference:
-W3schools was instrumental to the success of this project. It was often used to learn quick features or to compare and see where errors are.
+[W3schools](https://w3schools.com/) was instrumental to the success of this project. It was often used to learn quick features or to compare and see where errors are.
 
 ### CarePlus Logic: 
 The logic behid the application is a real life application called [©WellTree] (https://www.welltree.info/)
