@@ -121,9 +121,7 @@ def validate_sub_view_menu(sub_view_menu, select_student):
 
 
 def sub_view_menu_stage_2(value, select_student):
-    """
-    Receives the validated input for processing
-    """
+    """Receives the validated input for processing"""
     menu_inputed = value
     if menu_inputed == 1:
         student_progress_entry(select_student)
@@ -146,9 +144,7 @@ def sub_view_menu_stage_2(value, select_student):
     
 
 def student_progress_entry(select_student):
-    """
-    For inputing student's progress on health and educaation
-    """
+    """For inputing student's progress on health and educaation"""
     print()
     print(f"Welcome to {select_student.upper()}'s Care Progress\n")
     student = select_student.upper()
@@ -156,9 +152,7 @@ def student_progress_entry(select_student):
     
 
 def health_score(student):
-    """
-    Inpur Student Health Indicator
-    """
+    """Inpur Student Health Indicator"""
     while True:
         print(f"Enter Health Progress Value for {student}")
         print()
@@ -187,9 +181,7 @@ def education_score(student, validated_health_indicator):
     
 
 def validate_student_progress_education_input(student, validated_health_indicator, education_indicator):
-    """
-    Student validator input for Education
-    """
+    """Student validator input for Education"""
     try:
         validated_education_indicator = int(education_indicator)
 
@@ -204,9 +196,7 @@ def validate_student_progress_education_input(student, validated_health_indicato
     
 
 def validate_student_progress_input(student, indicator):
-    """
-    Student progress input validator
-    """    
+    """Student progress input validator"""    
     try:
         indicator_value = int(indicator)
 
@@ -230,9 +220,7 @@ def insert_health_column(student, indicator_value):
     
 
 def insert_health_and_education_column(student, validated_health_indicator, validated_education_indicator):
-    """
-    Health and Education column entries - done simultaneously
-    """
+    """Health and Education column entries - done simultaneously"""
     print()
     print(f"Entries for {student}:")
     print("Health Indicator = " + str(validated_health_indicator))
@@ -246,9 +234,7 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
 
 
 def view_student_summary(select_student):
-    """
-    Hold and Display student summary of Health and Education values
-    """
+    """Hold and Display student summary of Health and Education values"""
     print()
     select_student = select_student.upper()
     
@@ -277,9 +263,7 @@ def view_student_summary(select_student):
 #ChatGPT assisted in creating this function    
 
 def create_bar_chart(data):
-    """
-    Pictorial record display
-    """
+    """Pictorial record display"""
     max_value = max(data)
 
     for i in range(max_value, 0, -1):
@@ -325,9 +309,7 @@ def create_students():
             
 
 def rename_student(select_student):
-    """
-    Change Student name
-    """
+    """Change Student name"""
     select_student = select_student.upper()
     print(f"Your have chosen to Rename {select_student} in the app.\n")
     while True:
@@ -360,7 +342,7 @@ def rename_student(select_student):
             
 
 def delete_student(select_student):
-    """ Delete student name and record from app """
+    """Delete student name and record from app"""
     print(f"Your have chosen to delete {select_student}'s name and record from the app!\n")
     user_input = input("Are you sure?\nY- Yes or N- No: \n")
     if user_input.lower() == "n" or user_input.lower() == "no":
