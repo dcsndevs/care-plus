@@ -1,5 +1,11 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from allowed_characters import *
+from logo import *
+from instructions import *
+import os
+
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -14,9 +20,8 @@ SHEET = GSPREAD_CLIENT.open('care-plus')
 
 
 def start_selection():
-    """
-    Select from menu options
-    """
+    """Select from the main programme menu options"""
+    os.system('cls' if os.name == 'nt' else 'clear') #Clears the terminal
     while True:
         print("Press 1 - To select existing students")
         print("Press 2 - To create a new student")
@@ -48,9 +53,7 @@ def validate_menu(menu_input):
 
 
 def start_selection_stage_2(value):
-    """
-    Receives the validate input for processing
-    """
+    """Receives the validate input for processing"""
     menu_inputed = value
     if menu_inputed == 1:
         view_students()
@@ -63,9 +66,7 @@ def start_selection_stage_2(value):
 
 
 def view_students():
-    """
-    View existing students in the database
-    """
+    """View existing students in the database"""
     print("Welcome to Student Portal")
     
     all_students = SHEET.worksheet("student_list").col_values(1)[1:]
@@ -83,9 +84,7 @@ def view_students():
     
 
 def validate_student_record(all_students, select_student):
-    """
-    Validate student selection
-    """
+    """Validate student selection"""
     if select_student.upper() in all_students:
         print(f"Welcome to {select_student.upper()}'s management portal\n\nHere you can do any of the following:")
         print(f"""
@@ -109,9 +108,7 @@ def validate_student_record(all_students, select_student):
 
 
 def validate_sub_view_menu(sub_view_menu, select_student):
-    """
-    Validate Sub view Menu
-    """
+    """Validate Sub view Menu"""
     try:
         value = int(sub_view_menu)
         if value not in [1, 2, 3, 4]:
@@ -245,7 +242,7 @@ def insert_health_and_education_column(student, validated_health_indicator, vali
     worksheet_to_update.append_row(data)
     print(f"Indicators for {student} have been successfully uploaded!\n")
     print()
-    restart()
+    start_selection()
 
 
 def view_student_summary(select_student):
@@ -275,7 +272,7 @@ def view_student_summary(select_student):
     create_bar_chart(data)
 
     print("." * 35)
-    restart()
+    start_selection()
 
 #ChatGPT assisted in creating this function    
 
@@ -300,7 +297,7 @@ def create_bar_chart(data):
 
 def create_students():
     """
-    Student creation
+    Create new student name and stores it in the database(google sheets)
     """
     print("Welcome to Student Creation") 
     while True:
@@ -322,7 +319,7 @@ def create_students():
             worksheet_to_update2.append_row(studentName_list)
     
             print(f"{studentName} has been created successfully as a student in the database!\n")
-            restart()
+            start_selection()
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
             
@@ -355,7 +352,7 @@ def rename_student(select_student):
             rename_student_name(new_student_name, row_number, column_number)
     
             print(f"{new_student_name} has been successfully renamed in the database!\n")
-            restart()
+            start_selection()
         else:
             print("Invalid input: Enter only a combination of leters and dot(.)")
     
@@ -363,9 +360,7 @@ def rename_student(select_student):
             
 
 def delete_student(select_student):
-    """
-    Delete student name and record from app
-    """
+    """ Delete student name and record from app """
     print(f"Your have chosen to delete {select_student}'s name and record from the app!\n")
     user_input = input("Are you sure?\nY- Yes or N- No: \n")
     if user_input.lower() == "n" or user_input.lower() == "no":
@@ -400,25 +395,23 @@ def delete_student(select_student):
 
 
 def rename_student_name(studentName, row, col):
+    """Rename the existing student name in the database"""
     worksheet = SHEET.worksheet("student_list")
     worksheet.update_cell(row, col, str(studentName))
     print("Student Name Changed....\n")
 
 
 def delete_student_name(row, col):
+    """Delete the existing student name in the database"""
     worksheet = SHEET.worksheet("student_list")
     worksheet.delete_rows(row)
     print("Student Name Deleted....\n")
 
 
 def validate_student_name(student_name_input):
-    """
-    Student creation string validation
-    """
+    """Student creation string validation"""
     import re
     print("Validating inputed name...")
-
-    allowed_characters = ['.', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     
     pattern = r'^[a-zA-Z]{2,}'
     while True:
@@ -435,69 +428,29 @@ def validate_student_name(student_name_input):
     
 
 def restart():
-    """
-    Restart or exit the Application
-    """
+    """Restart or exit the Application"""
     while True:
         user_input = input(f"Press enter to restart the program or type 'exit' to Terminate: \n")
         if user_input.lower() == 'exit':
             custom_exit()
         if user_input.lower() == '':
             print("Restarting the application...\n")
+            os.system('cls' if os.name == 'nt' else 'clear')
             main()
         elif user_input.lower() == 'exit':
+            os.system('cls' if os.name == 'nt' else 'clear')
             custom_exit()
         else:
             print("Invalid seclection\n")
             
 
 def view_instructions():
-    """
-    Display Instructions for using the Care Plus App
-    """
+    """Display Instructions for using the Care Plus App"""
     welcome = "Welcome to Care Plus App Instructions"
     print("=" * len(welcome))
     print(welcome)
     print("=" * len(welcome))
-    instructions = """
-Hint: - Typing 'Exit' in any given input field, would exit the program.
-
-1. **Select Options:**
-    - Press `1` to view existing students.
-    - Press `2` to create a new student.
-    - Press `3` to view instructions.
-
-2. **View Existing Students:**
-   - After selecting option `1`, you will see a list of existing students.
-   - Enter the name of the student you want to view.
-   - You would yet have an option to Input, View, Rename and to Delete Student records
-
-3. **Create a New Student:**
-   - After selecting option `2`, enter the name of the new student.
-   - Follow the prompts to input health and education progress indicators.
-
-4. **View Instructions:**
-   - After selecting option `3`, this screen will be displayed.
-   - These instructions provide guidance on how to use the application effectively.
-
-5. **Progress Entry:**
-   - When entering progress indicators, input values between 0 and 10.
-   - For health and education, the app will visualize the progress with bar charts.
-
-6. **Viewing Student Summary:**
-   - After entering progress indicators, choose to view the student's overall progress.
-   - The app will display the average health and education scores, along with visual representations.
-
-7. **Restart or Exit:**
-   - After completing any operation, press `Enter` to restart the program.
-   - Type 'exit' to terminate the application.
-
-8. **Note:**
-   - Ensure that you enter valid inputs as guided by the application.
-   - Follow on-screen prompts for a seamless experience.
-
-Enjoy using Care Plus App to manage student data and track their progress!
-    """
+    
     print(instructions)
     
     user_input = input("Enter 'm' or any key to return to the main menu: ")
@@ -511,17 +464,14 @@ Enjoy using Care Plus App to manage student data and track their progress!
         
 
 def return_to_main_menu():
-    """
-    Back to Main menu
-    """
-    print("Returning...\n")
+    """Back to Main menu"""
+    # Clears the terminal
+    os.system('cls' if os.name == 'nt' else 'clear')    
     start_selection()
     
 
 def custom_exit():
-    """
-    Special exit for leaving the program from all input fields
-    """
+    """Special exit for leaving the program from all input fields"""
     print()
     print("Exiting application.........\n")
     print("Goodbye.\n")
@@ -529,24 +479,19 @@ def custom_exit():
     quit() 
 
 
-def main():
-    """
-    Run all program functions
-    """
-    
-    logo = """
-     CCCCCC   AAAAA   RRRRRR   EEEEEE       ++
-    CC       AA   AA  RR  RR   EE           ++
-    CC       AAAAAAA  RRRR     EEEEEE    ++++++++
-    CC       AA   AA  RR   RR  EE           ++
-     CCCCCC  AA   AA  RR   RR  EEEEEE       ++
-          """
+def welcome():
+    """Welcome area containing logo and message"""
     print(logo)
-    print()
     welcome = "Welcome to Care Plus App"
     print("=" * len(welcome))
     print(welcome)
     print("=" * len(welcome))
+
+
+def main():
+    """Run all program functions"""
+    welcome()
     start_selection()
-    
+
+
 main()

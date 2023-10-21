@@ -77,7 +77,6 @@ Rigorous manual testing was performed to ensure the app's functionality, includi
 <img src="documentation/enter-string.png">-
 
 </details>
-
 <details><summary>Select a student</summary>
 - Anything other than the sudent record in the database
 <img src="documentation/no-student-record.png">
@@ -93,7 +92,6 @@ Student creation comes with multiple validations:
 
 <img src="documentation/student-creation-validation.png">
 <img src="documentation/student-creation-validation-2.png">
-
 </details>
 
 ### Manual Testing: 
@@ -121,8 +119,6 @@ Student creation comes with multiple validations:
 |-|-|
 | Warning error: /Users/dcsn/care-plus/run.py:385: DeprecationWarning: Worksheet.delete_row() is deprecated, Please use `Worksheet.delete_rows()` instead|I replaced code with worksheet.delete_row(row) instead |
 
-
-
 ### CI Python Linter:
 The CI Python Linter https://pep8ci.herokuapp.com/ was used to test for errors in the code. No errors were found except for warning concerning white spaces or characters being longer than the 79 characters that was originally deisgned for the application
 
@@ -136,7 +132,7 @@ Lucid was used to draw mock-ups for the initial app design to guide the developm
 ## Technologies used:
 - [Python](https://python.org) is the main technolgy used in this application
 - [Lucid](https://lucid.com) was used to create workflows for guidance in building the application
-- [VScode](https://vscode.com/) was used to write and edit the codes and host the site on my local computer
+- [VScode](https://vscode.com/) was used to write and edit the codes and host the site on my local  computer
 - [Git](https://github.com) was used for the version control of the application
 - [Heroku](https://heroku.com) was used to host the deployed application
 - [ChatGPT](https://chat.openai.com/) was often consulted regarding the usage and construction of codes
@@ -149,10 +145,7 @@ The template for this app was generated from Code-Institute-Org/p3-template. The
 
 The Heroku gi URl is https://git.heroku.com/care-plus.git
 
-
 The app was then deployed on Heroku via Github:
-
-
 
 1. Heroku Account Setup:
 
@@ -189,7 +182,6 @@ The app was then deployed on Heroku via Github:
     Choose either "Enable Automatic Deploys" for continuous integration or "Manual Deploy" for manual control.
 
 Deployed site -> [Here](https://care-plus-e6b7c675e391.herokuapp.com/)
-
 
 
 ### Local Deployment:
